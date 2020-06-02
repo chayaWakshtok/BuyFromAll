@@ -16,6 +16,11 @@ import { CheckoutComponent } from './component/user/checkout/checkout.component'
 import { PaymentComponent } from './component/user/payment/payment.component';
 import { AddItemComponent } from './component/customer/add-item/add-item.component';
 import { SearchComponent } from './component/user/search/search.component';
+import { NavbarComponent } from './component/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ItemTemplateComponent } from './component/item/item-template/item-template.component';
+import { CartComponent } from './component/item/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +37,19 @@ import { SearchComponent } from './component/user/search/search.component';
     CheckoutComponent,
     PaymentComponent,
     AddItemComponent,
-    SearchComponent
+    SearchComponent,
+    NavbarComponent,
+    ItemTemplateComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
