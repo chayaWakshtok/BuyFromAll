@@ -38,9 +38,25 @@ namespace BL
             }
         }
 
-        public Task<ActionResult<CategoryEntity>> SaveAsync(CategoryEntity entity)
+        public async Task<ActionResult<CategoryEntity>> SaveAsync(CategoryEntity entity)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (entity.Id == 0)
+                    throw new ArgumentException("Only entity with id can be saved");
+
+                ActionResult<CategoryEntity> result = new ActionResult<CategoryEntity>(ActionStatus.Ok, entity);
+
+                int apiResult =await _categoryManager.SaveEntityAsync(entity);
+                if (apiResult <= 0)
+                    result.SetError().AddExceptionMessage($"Unable to save category");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string errMessage = Messages.Error.CreateEntityException(typeof(CategoryEntity), entity.Id.ToString());
+                return new ActionResult<CategoryEntity>(ActionStatus.Error, null, ex).AddExceptionMessage(errMessage);
+            }
         }
 
         public Task<ActionResult<CategoryEntity>> UpdateAsync(CategoryEntity entity)

@@ -63,8 +63,27 @@ namespace BuyFromAllService.Controllers
         }
 
         // POST: api/Category
-        public void Post([FromBody]string value)
+        public async Task<HttpResponseMessage> Post([FromBody] CategoryEntity value)
         {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            ActionResult<CategoryEntity> result = new ActionResult<CategoryEntity>(ActionStatus.Ok);
+
+            try
+            {
+                var resSave = await _category.SaveAsync(value);
+
+                if (resSave.Status != ActionStatus.Ok)
+                {
+                    response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, resSave.FirstExeptionMessage());
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK, value);
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+
+            return response;
         }
 
         // PUT: api/Category/5
