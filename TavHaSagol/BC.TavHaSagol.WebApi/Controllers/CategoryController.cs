@@ -89,6 +89,7 @@ namespace BuyFromAllService.Controllers
         // PUT: api/Category/5
         public void Put(int id, [FromBody]string value)
         {
+
         }
 
         // DELETE: api/Category/5
