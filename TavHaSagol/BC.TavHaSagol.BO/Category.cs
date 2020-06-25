@@ -18,9 +18,24 @@ namespace BL
         {
             _categoryManager = categoryManager;
         }
-        public Task<ActionResult<CategoryEntity>> DeleteAsync(int key)
+        public async Task<ActionResult<CategoryEntity>> DeleteAsync(int key)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (key <= 0)
+                    throw new ArgumentException("Given key should be greater than zero");
+                ActionResult<CategoryEntity> result = new ActionResult<CategoryEntity>(ActionStatus.Ok);
+
+                int res = await _categoryManager.DeleteEntityAsync(key);
+                if (res <= 0)
+                    result.SetError().AddExceptionMessage($"Unable to delete category id: {key}");
+                return result;
+            }
+            catch (Exception ex)
+            {
+                string errMessage = Messages.Error.DeleteEntityException(typeof(CategoryEntity), key.ToString());
+                return new ActionResult<CategoryEntity>(ActionStatus.Error, null, ex).AddExceptionMessage(errMessage);
+            }
         }
 
         public async Task<ActionResult<List<CategoryEntity>>> GetAll()

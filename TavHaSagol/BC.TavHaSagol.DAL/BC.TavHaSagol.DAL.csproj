@@ -142,7 +142,7 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>"D:\BuyFromAll\BuyFromAllService\AM.DBMapper\bin\Debug\AM.DBMapper.exe" --DataProvider MySql.Data.MySqlClient --TargetFolder  "D:\BuyFromAll\TavHaSagol\BC.TavHaSagol.DAL" --Namespace "DAL"  --ConStr "server=localhost;User Id=root;password=Brandcust2019;database=buyfromall"
+    <PreBuildEvent>"D:\BuyFromAll\TavHaSagol\AM.DBMapper\bin\Debug\AM.DBMapper.exe" --DataProvider MySql.Data.MySqlClient --TargetFolder  "D:\BuyFromAll\TavHaSagol\BC.TavHaSagol.DAL" --Namespace "DAL"  --ConStr "server=localhost;User Id=root;password=Brandcust2019;database=buyfromall"
 exit</PreBuildEvent>
   </PropertyGroup>
 </Project>

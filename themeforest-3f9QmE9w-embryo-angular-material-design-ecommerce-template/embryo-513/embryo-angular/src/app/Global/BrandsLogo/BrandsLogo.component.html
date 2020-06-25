@@ -2,7 +2,7 @@
 <ngx-slick-carousel class="carousel" [config]="slideConfig">
   <div ngxSlickItem *ngFor="let brand of brandsLogoArray">
     <a [routerLink]="['/products']">
-      <img width="150" height="30" [src]="brand.image"  alt="logo client">
+      <img width="150" height="30" src="assets/images/client-logo-3.png"  [alt]="brand.name">
     </a>
   </div>
 </ngx-slick-carousel>

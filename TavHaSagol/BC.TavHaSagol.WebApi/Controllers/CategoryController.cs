@@ -15,14 +15,22 @@ using Unity;
 namespace BuyFromAllService.Controllers
 {
     [RoutePrefix("api/Category")]
+    
     public class CategoryController : ApiController
     {
         private Category _category;
+        /// <summary>
+        /// 
+        /// </summary>
         public CategoryController()
         {
             _category = DIManager.Container.Resolve<Category>();
-
         }
+
+        /// <summary>  
+        /// retrun all category  
+        /// </summary>  
+        /// <returns></returns> 
         [Route("GetAll")]
         public async Task<HttpResponseMessage> Get()
         {
@@ -57,12 +65,22 @@ namespace BuyFromAllService.Controllers
         }
 
         // GET: api/Category/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public string Get(int id)
         {
             return "value";
         }
 
         // POST: api/Category
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public async Task<HttpResponseMessage> Post([FromBody] CategoryEntity value)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
@@ -87,14 +105,23 @@ namespace BuyFromAllService.Controllers
         }
 
         // PUT: api/Category/5
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="value"></param>
         public void Put(int id, [FromBody]string value)
         {
 
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
         // DELETE: api/Category/5
         public void Delete(int id)
         {
+
         }
     }
 }
