@@ -68,7 +68,7 @@ export class MainComponent implements OnInit {
       ).subscribe();
 
       // We're sure that subscription has been made, we can start loading bar service
-      this.loader.start();
+      //this.loader.start();
    }
 
    public hideSideNav() {

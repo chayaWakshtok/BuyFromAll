@@ -1,9 +1,12 @@
+import { ItemChild } from "./itemChild";
+import { User } from "./user";
+
 export class Basket
 {
     id:number;
 	itemChildId:number;
-	itemChild :number;
 	count:number;
 	userId :number;
-		//public UserEntity User { get; set; }
+	items_child:ItemChild=new ItemChild();
+	user:User=new User();
 }

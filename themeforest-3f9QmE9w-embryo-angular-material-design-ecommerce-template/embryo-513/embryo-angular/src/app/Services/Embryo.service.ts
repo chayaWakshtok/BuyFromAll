@@ -46,7 +46,7 @@ export class EmbryoService {
       this.toastyConfig.position = "top-right";
       this.toastyConfig.theme = "material";
       this.calculateLocalWishlistProdCounts();
-      localStorage.removeItem("user");
+      //localStorage.removeItem("user");
       localStorage.removeItem("byProductDetails");
 
       this.db.object("products").valueChanges().subscribe(res => {this.setCartItemDefaultValue(res['gadgets'][1])});
@@ -252,6 +252,7 @@ export class EmbryoService {
       for (let i = 0; i < products.length; i++) {
          if (products[i].productId === product.productId) {
            products.splice(i, 1);
+           
            break;
          }
       }
@@ -316,7 +317,12 @@ export class EmbryoService {
    public getContactInfo()
    {
       let contact : any;
-      contact = this.db.object("contact");
+      contact =  {
+         "address": "1899 Cemetery Street,MEDFORD - 1452451 New York",
+         "call": "+123 90394903",
+         "info": "If you have any problems,suggestions and feedback then please feel free to contact with us. Choose our communication soruces. We will love to hear from you.",
+         "mail": "support@theironnetwork.org"
+      };
       return contact;
    }
 
@@ -346,7 +352,59 @@ export class EmbryoService {
    public getFaq()
    {
       let faq : any;
-      faq = this.db.object("faq");
+      faq = {
+         "can_get_answer": {
+            "content": "If your are unable to get the answers then feel free to contact us by submit a support request. We will very happy to listen from you.",
+            "heading": "Did not get your answer here?"
+         },
+         "content": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Magni, aspernatur minus voluptatibus quaerat officiis, incidunt maiores, tempora nam eaque ab consequatur tenetur explicabo voluptatem vel voluptatum perspiciatis accusantium. Illum, nemo?",
+         "faqs": [{
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "When I will receive my package i did not got any call"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "I did not get email and text messege afer payment"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "How to track the shipping order?"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "I got promocodes , how to reedeem?"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "How can i cancel the order"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "BOA credit card has problem with shopping"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "How to change the password of my account"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "How to delete the saved card Infomation"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "How to pay bill throgh netbanking"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "Do you have any stores in USA?"
+            },
+            {
+               "ans": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur fugit asperiores voluptas. Ipsum expedita nostrum architecto eum adipisci ipsa quod illo error aliquid impedit facilis sunt nobis qui, voluptatem deserunt.",
+               "ques": "How to deactivate account?"
+            }
+         ],
+         "heading": "Get Instant answers for most common questions"
+      };
       return faq;
    }
 

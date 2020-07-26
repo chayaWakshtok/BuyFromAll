@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'embryo-HeaderUserProfileDropdown',
@@ -7,9 +9,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderUserProfileDropdownComponent implements OnInit {
 
-   constructor() { }
+  @Input() isLogin: boolean = false;
 
-   ngOnInit() {
-   }
+  constructor(public router: Router,
+    public userService: UserService) { }
+
+  ngOnInit() {
+    var user = JSON.parse(localStorage.getItem("user"));
+    if (user)
+      this.isLogin = true;
+
+    this.userService.subjectLogin.subscribe(res => {
+      debugger
+      this.isLogin = true;
+    })
+  }
+
+  login() {
+    this.router.navigate(["session/signin"])
+  }
+
+  logOut()
+  {
+    localStorage.removeItem("user");
+    this.isLogin=false;
+    this.router.navigate(["session/signin"])
+  }
 
 }

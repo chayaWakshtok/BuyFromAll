@@ -4,7 +4,7 @@
 
 export const environment = {
 	production: false,
-	baseUrl:"https://localhost:44379/api/",
+	baseUrl:"https://localhost:44395/api/",
 	firebase: {
 		apiKey: "AIzaSyAWIUjgtFYTu7gnOQcHddfXhoA0Te6sAHA",
 		authDomain: "embryo-angular.firebaseapp.com",

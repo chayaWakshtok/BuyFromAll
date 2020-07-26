@@ -11,12 +11,12 @@ export class BrandService {
 
   url:string;
   constructor(public httpClient:HttpClient) { 
-    this.url=environment.baseUrl+"brand";
+    this.url=environment.baseUrl+"Brands";
   }
 
   getAll():Observable<Brand[]>
   {
-    return this.httpClient.get<Brand[]>(this.url+"/getAll");
+    return this.httpClient.get<Brand[]>(this.url);
   }
 
 

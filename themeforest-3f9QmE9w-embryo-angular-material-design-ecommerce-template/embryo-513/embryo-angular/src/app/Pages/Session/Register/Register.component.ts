@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/Modals/user';
+import { UserService } from 'src/app/Services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'embryo-Register',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor() { }
+  user: User = new User();
+
+  constructor(public userService: UserService,
+    public router: Router) { }
 
   ngOnInit() {
+  }
+
+  submit() {
+    this.userService.signUp(this.user).subscribe(res => {
+      localStorage.setItem("user",JSON.stringify(res));
+      this.userService.subjectLogin.next(true);
+      this.router.navigate([""]);
+    })
   }
 
 }
