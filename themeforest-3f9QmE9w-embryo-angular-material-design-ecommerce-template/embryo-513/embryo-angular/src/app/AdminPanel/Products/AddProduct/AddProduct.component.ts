@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Item } from 'src/app/Modals/item';
 
 @Component({
 	selector: 'app-add-product',
@@ -15,6 +16,7 @@ export class AddProductComponent implements OnInit {
    sizeArray     : number[] = [36,38,40,42,44,46,48];
    quantityArray : number[] = [1,2,3,4,5,6,7,8,9,10];
    public imagePath;
+   product:Item=new Item();
 
    "data" : any = [
       {  
@@ -52,5 +54,10 @@ export class AddProductComponent implements OnInit {
       document.querySelector('.border-active').classList.remove('border-active');
       this.mainImgPath = imgPath;
       document.getElementById(index+'_img').className += " border-active";
+   }
+
+   add()
+   {
+
    }
 }

@@ -39,6 +39,7 @@ namespace BuyWebSql.Models
         public string Fax { get; set; }
         public Nullable<int> CityId { get; set; }
         public string Image { get; set; }
+        public string FaceId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<basket> baskets { get; set; }

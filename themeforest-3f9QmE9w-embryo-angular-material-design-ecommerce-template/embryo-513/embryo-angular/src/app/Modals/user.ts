@@ -20,11 +20,15 @@ export class User {
     code: string;
     fax: string;
     cityId: number;
-    baskets:Basket[]=[];
-    city:City=new City();
-    orders:Order[]=[];
-    searches:Search[]=[];
-    wish_list:WishList[]=[];
-    user_Comment:UserComment[]=[];
-    image:string;
+    baskets: Basket[] = [];
+    city: City = new City();
+    orders: Order[] = [];
+    searches: Search[] = [];
+    wish_list: WishList[] = [];
+    user_Comment: UserComment[] = [];
+    image: string;
+    faceId: string;
+    glasses: boolean;
+    age:number;
+    gender:string;
 }

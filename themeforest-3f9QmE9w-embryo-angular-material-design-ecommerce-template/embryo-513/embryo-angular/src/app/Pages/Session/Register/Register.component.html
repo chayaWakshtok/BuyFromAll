@@ -34,11 +34,10 @@
                   <mat-form-field class="w-100">
                     <input matInput type="password" placeholder="Retype Password" required>
                   </mat-form-field>
+                  <mat-form-field class="w-100">
+                    <input matInput type="text" [(ngModel)]="user.image" name="image" placeholder="Image Url" required>
+                  </mat-form-field>
                 </div>
-                <div class="mb-4">
-                  <input type="file" [(ngModel)]="user.image" name="image" placeholder="Choose Image" required>
-                </div>
-
                 <button color="accent" class="button-lg mb-3" mat-raised-button>Submit</button>
                 <div> Already have account? then <a class="accent-color" [routerLink]="['/session/signin']">Sign In</a>
                 </div>

@@ -277,6 +277,7 @@
           <Property Name="Fax" Type="varchar" MaxLength="12" />
           <Property Name="CityId" Type="int" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" />
+          <Property Name="FaceId" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="vat">
           <Key>
@@ -1139,6 +1140,7 @@
           <NavigationProperty Name="wish_list" Relationship="Self.User22" FromRole="users" ToRole="wish_list" />
           <NavigationProperty Name="User_Comment" Relationship="buyfromallModel.FK_User_Comment_users" FromRole="user" ToRole="User_Comment" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FaceId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="vat">
           <Key>
@@ -1871,6 +1873,7 @@
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="buyfromallModel.user">
               <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="FaceId" ColumnName="FaceId" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />

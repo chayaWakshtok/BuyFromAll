@@ -19,11 +19,21 @@ export class RegisterComponent implements OnInit {
   }
 
   submit() {
-    this.userService.signUp(this.user).subscribe(res => {
-      localStorage.setItem("user",JSON.stringify(res));
-      this.userService.subjectLogin.next(true);
-      this.router.navigate([""]);
+    this.userService.detect(this.user.image).subscribe(res => {
+      debugger;
+      if (res[0]["glasses"] == "NoGlasses")
+        this.user.glasses = false;
+      else this.user.glasses = true;
+      this.user.age = res[0]["faceAttributes"]["age"];
+      this.user.gender = res[0]["faceAttributes"]["gender"];
+      this.user.faceId = res[0]["faceId"];
+      this.userService.signUp(this.user).subscribe(res => {
+        localStorage.setItem("user", JSON.stringify(res));
+        this.userService.subjectLogin.next(true);
+        this.router.navigate([""]);
+      })
     })
+
   }
 
 }
