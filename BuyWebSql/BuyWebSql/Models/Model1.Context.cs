@@ -25,30 +25,21 @@ namespace BuyWebSql.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<basket> baskets { get; set; }
         public virtual DbSet<brand> brands { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<city> cities { get; set; }
-        public virtual DbSet<color> colors { get; set; }
         public virtual DbSet<customer> customers { get; set; }
-        public virtual DbSet<feature> features { get; set; }
+        public virtual DbSet<Feature> Features { get; set; }
         public virtual DbSet<image> images { get; set; }
-        public virtual DbSet<item_features> item_features { get; set; }
-        public virtual DbSet<item> items { get; set; }
-        public virtual DbSet<items_child> items_child { get; set; }
-        public virtual DbSet<manufacturer> manufacturers { get; set; }
-        public virtual DbSet<material> materials { get; set; }
         public virtual DbSet<order_items> order_items { get; set; }
         public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<search> searches { get; set; }
-        public virtual DbSet<shipping> shippings { get; set; }
         public virtual DbSet<site> sites { get; set; }
-        public virtual DbSet<size> sizes { get; set; }
-        public virtual DbSet<sub_categories> sub_categories { get; set; }
-        public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<vat> vats { get; set; }
-        public virtual DbSet<wish_list> wish_list { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User_Comment> User_Comment { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<item> items { get; set; }
     }
 }

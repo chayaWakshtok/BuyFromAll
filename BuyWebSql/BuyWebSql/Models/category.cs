@@ -17,8 +17,8 @@ namespace BuyWebSql.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public category()
         {
-            this.sub_categories = new HashSet<sub_categories>();
-            this.features = new HashSet<feature>();
+            this.items = new HashSet<item>();
+            this.items1 = new HashSet<item>();
         }
     
         public int Id { get; set; }
@@ -26,8 +26,8 @@ namespace BuyWebSql.Models
         public string Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sub_categories> sub_categories { get; set; }
+        public virtual ICollection<item> items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<feature> features { get; set; }
+        public virtual ICollection<item> items1 { get; set; }
     }
 }

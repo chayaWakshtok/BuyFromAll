@@ -19,9 +19,9 @@ namespace BuyWebSql.Models
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<int> Rate { get; set; }
         public Nullable<int> UserId { get; set; }
-        public Nullable<int> ItemChildId { get; set; }
+        public Nullable<int> ItemId { get; set; }
     
-        public virtual items_child items_child { get; set; }
         public virtual user user { get; set; }
+        public virtual item item { get; set; }
     }
 }

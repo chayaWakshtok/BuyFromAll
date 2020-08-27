@@ -15,13 +15,13 @@ namespace BuyWebSql.Models
     public partial class order_items
     {
         public int Id { get; set; }
-        public int ItemChildId { get; set; }
+        public int ItemId { get; set; }
         public Nullable<int> Count { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<int> OrderId { get; set; }
     
-        public virtual items_child items_child { get; set; }
         public virtual order order { get; set; }
+        public virtual item item { get; set; }
     }
 }

@@ -22,17 +22,21 @@ namespace BuyWebSql.Models
         }
     
         public int Id { get; set; }
-        public Nullable<int> ShippingId { get; set; }
         public int UserId { get; set; }
         public Nullable<double> TotalPrice { get; set; }
         public Nullable<int> Status { get; set; }
         public Nullable<short> Paid { get; set; }
+        public string BuilingName { get; set; }
+        public string ZipCode { get; set; }
+        public string City { get; set; }
+        public string Country { get; set; }
+        public string Mobile { get; set; }
+        public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<order_items> order_items { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payments { get; set; }
-        public virtual shipping shipping { get; set; }
         public virtual user user { get; set; }
     }
 }

@@ -12,19 +12,12 @@ namespace BuyWebSql.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class vat
+    public partial class Tag
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public vat()
-        {
-            this.items_child = new HashSet<items_child>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string TagName { get; set; }
+        public Nullable<int> ItemId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<items_child> items_child { get; set; }
+        public virtual item item { get; set; }
     }
 }

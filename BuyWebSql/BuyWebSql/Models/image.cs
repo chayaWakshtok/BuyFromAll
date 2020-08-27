@@ -14,11 +14,21 @@ namespace BuyWebSql.Models
     
     public partial class image
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public image()
+        {
+            this.items = new HashSet<item>();
+            this.items1 = new HashSet<item>();
+        }
+    
         public int Id { get; set; }
         public string ImageSrc { get; set; }
         public string ImageUrl { get; set; }
         public Nullable<int> ItemChildId { get; set; }
     
-        public virtual items_child items_child { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<item> items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<item> items1 { get; set; }
     }
 }

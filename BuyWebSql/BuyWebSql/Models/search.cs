@@ -14,18 +14,10 @@ namespace BuyWebSql.Models
     
     public partial class search
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public search()
-        {
-            this.features = new HashSet<feature>();
-        }
-    
         public int Id { get; set; }
         public System.DateTime DateSearch { get; set; }
         public Nullable<int> UserId { get; set; }
     
         public virtual user user { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<feature> features { get; set; }
     }
 }

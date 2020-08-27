@@ -1,10 +1,8 @@
 import { Item } from "./item";
 
-
-export class Feature {
+export class Tag {
     id: number;
-    featureName: string;
+    tagName: string;
     itemId: number;
     item: Item;
-
 }

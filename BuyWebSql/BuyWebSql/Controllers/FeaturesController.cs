@@ -17,16 +17,16 @@ namespace BuyWebSql.Controllers
         private buyfromallEntities db = new buyfromallEntities();
 
         // GET: api/Features
-        public IQueryable<feature> Getfeatures()
+        public IQueryable<Feature> GetFeatures()
         {
-            return db.features;
+            return db.Features;
         }
 
         // GET: api/Features/5
-        [ResponseType(typeof(feature))]
-        public IHttpActionResult Getfeature(int id)
+        [ResponseType(typeof(Feature))]
+        public IHttpActionResult GetFeature(int id)
         {
-            feature feature = db.features.Find(id);
+            Feature feature = db.Features.Find(id);
             if (feature == null)
             {
                 return NotFound();
@@ -37,7 +37,7 @@ namespace BuyWebSql.Controllers
 
         // PUT: api/Features/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult Putfeature(int id, feature feature)
+        public IHttpActionResult PutFeature(int id, Feature feature)
         {
             if (!ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace BuyWebSql.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!featureExists(id))
+                if (!FeatureExists(id))
                 {
                     return NotFound();
                 }
@@ -71,31 +71,31 @@ namespace BuyWebSql.Controllers
         }
 
         // POST: api/Features
-        [ResponseType(typeof(feature))]
-        public IHttpActionResult Postfeature(feature feature)
+        [ResponseType(typeof(Feature))]
+        public IHttpActionResult PostFeature(Feature feature)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.features.Add(feature);
+            db.Features.Add(feature);
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = feature.Id }, feature);
         }
 
         // DELETE: api/Features/5
-        [ResponseType(typeof(feature))]
-        public IHttpActionResult Deletefeature(int id)
+        [ResponseType(typeof(Feature))]
+        public IHttpActionResult DeleteFeature(int id)
         {
-            feature feature = db.features.Find(id);
+            Feature feature = db.Features.Find(id);
             if (feature == null)
             {
                 return NotFound();
             }
 
-            db.features.Remove(feature);
+            db.Features.Remove(feature);
             db.SaveChanges();
 
             return Ok(feature);
@@ -110,9 +110,9 @@ namespace BuyWebSql.Controllers
             base.Dispose(disposing);
         }
 
-        private bool featureExists(int id)
+        private bool FeatureExists(int id)
         {
-            return db.features.Count(e => e.Id == id) > 0;
+            return db.Features.Count(e => e.Id == id) > 0;
         }
     }
 }

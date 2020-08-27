@@ -5,15 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="buyfromallModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="baskets">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemChildId" Type="int" />
-          <Property Name="Count" Type="int" />
-          <Property Name="UserId" Type="int" />
-        </EntityType>
         <EntityType Name="brands">
           <Key>
             <PropertyRef Name="Id" />
@@ -31,14 +22,6 @@
           <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="category_features">
-          <Key>
-            <PropertyRef Name="FeatureId" />
-            <PropertyRef Name="CategoryId" />
-          </Key>
-          <Property Name="FeatureId" Type="int" Nullable="false" />
-          <Property Name="CategoryId" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="cities">
           <Key>
             <PropertyRef Name="Id" />
@@ -46,14 +29,6 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Country" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="colors">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ColorName" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="RgbColor" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="customers">
           <Key>
@@ -80,12 +55,21 @@
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="SiteId" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="features">
+        <EntityType Name="Features">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="FeatureName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ItemId" Type="int" />
+        </EntityType>
+        <EntityType Name="ImageGallery">
+          <Key>
+            <PropertyRef Name="ImageId" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ImageId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="images">
           <Key>
@@ -96,80 +80,35 @@
           <Property Name="ImageUrl" Type="varchar" MaxLength="200" />
           <Property Name="ItemChildId" Type="int" />
         </EntityType>
-        <EntityType Name="item_categories">
-          <Key>
-            <PropertyRef Name="SubCategoryId" />
-            <PropertyRef Name="ItemId" />
-          </Key>
-          <Property Name="SubCategoryId" Type="int" Nullable="false" />
-          <Property Name="ItemId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="item_features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemId" Type="int" />
-          <Property Name="FeatureId" Type="int" />
-          <Property Name="Value" Type="varchar" MaxLength="45" />
-        </EntityType>
         <EntityType Name="items">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Barcode" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ProductCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="CustomerId" Type="int" />
           <Property Name="SiteId" Type="int" />
           <Property Name="BrandId" Type="int" />
-          <Property Name="ManufacturerId" Type="int" />
-        </EntityType>
-        <EntityType Name="items_child">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="Description" Type="varchar(max)" />
-          <Property Name="Stars" Type="float" />
-          <Property Name="VatId" Type="int" />
-          <Property Name="Price" Type="float" />
-          <Property Name="PresentLess" Type="float" />
-          <Property Name="ColorId" Type="int" />
-          <Property Name="Count" Type="int" />
-          <Property Name="Barcode" Type="varchar" MaxLength="45" />
-          <Property Name="ParentItemId" Type="int" />
-          <Property Name="ShippingPrice" Type="float" />
-          <Property Name="Status" Type="smallint" />
-          <Property Name="ShippingDescription" Type="varchar(max)" />
-          <Property Name="ReturnDescription" Type="varchar(max)" />
-          <Property Name="TimeShipping" Type="varchar" MaxLength="20" />
-          <Property Name="CreationDate" Type="datetime2" Precision="0" />
-          <Property Name="UnitsStock" Type="int" />
-          <Property Name="SizeId" Type="int" />
-        </EntityType>
-        <EntityType Name="manufacturers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
-        </EntityType>
-        <EntityType Name="materials">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="LoaziName" Type="varchar" MaxLength="45" />
-          <Property Name="Description" Type="varchar" MaxLength="45" />
+          <Property Name="Availablity" Type="bit" />
+          <Property Name="CategoryId" Type="int" />
+          <Property Name="CategoryType" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiscountPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ImageId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Popular" Type="bit" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="Rating" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="Type" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="order_items">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemChildId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
           <Property Name="Count" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Status" Type="int" />
@@ -180,11 +119,16 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ShippingId" Type="int" />
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="TotalPrice" Type="float" />
           <Property Name="Status" Type="int" />
           <Property Name="Paid" Type="smallint" />
+          <Property Name="BuilingName" Type="nvarchar" MaxLength="100" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="100" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="Mobile" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="payments">
           <Key>
@@ -204,24 +148,6 @@
           <Property Name="DateSearch" Type="datetime2" Precision="0" Nullable="false" />
           <Property Name="UserId" Type="int" />
         </EntityType>
-        <EntityType Name="search_features">
-          <Key>
-            <PropertyRef Name="FeatureId" />
-            <PropertyRef Name="SearchId" />
-          </Key>
-          <Property Name="FeatureId" Type="int" Nullable="false" />
-          <Property Name="SearchId" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="shipping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="45" />
-          <Property Name="Status" Type="int" />
-          <Property Name="ShippingDate" Type="datetime2" Precision="0" />
-          <Property Name="CreationDate" Type="datetime2" Precision="0" />
-        </EntityType>
         <EntityType Name="sites">
           <Key>
             <PropertyRef Name="Id" />
@@ -231,21 +157,23 @@
           <Property Name="Description" Type="varchar" MaxLength="200" />
           <Property Name="Website" Type="varchar" MaxLength="100" />
         </EntityType>
-        <EntityType Name="sizes">
+        <EntityType Name="sysdiagrams">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Size" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <EntityType Name="sub_categories">
+        <EntityType Name="Tags">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="100" />
-          <Property Name="CategoryId" Type="int" />
+          <Property Name="TagName" Type="nvarchar" MaxLength="10" />
+          <Property Name="ItemId" Type="int" />
         </EntityType>
         <EntityType Name="User_Comment">
           <Key>
@@ -256,7 +184,7 @@
           <Property Name="Date" Type="datetime" />
           <Property Name="Rate" Type="int" />
           <Property Name="UserId" Type="int" />
-          <Property Name="ItemChildId" Type="int" />
+          <Property Name="ItemId" Type="int" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -278,22 +206,9 @@
           <Property Name="CityId" Type="int" />
           <Property Name="Image" Type="nvarchar" MaxLength="200" />
           <Property Name="FaceId" Type="nvarchar" MaxLength="200" />
-        </EntityType>
-        <EntityType Name="vat">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="45" />
-          <Property Name="Description" Type="varchar" MaxLength="45" />
-        </EntityType>
-        <EntityType Name="wish_list">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ItemChildId" Type="int" />
-          <Property Name="UserId" Type="int" />
+          <Property Name="Glasses" Type="bit" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="20" />
+          <Property Name="Age" Type="int" />
         </EntityType>
         <Association Name="BrandFK">
           <End Role="brands" Type="Self.brands" Multiplicity="0..1" />
@@ -307,54 +222,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Cate1">
-          <End Role="categories" Type="Self.categories" Multiplicity="1" />
-          <End Role="category_features" Type="Self.category_features" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="category_features">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CategoryFK">
-          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
-          <End Role="sub_categories" Type="Self.sub_categories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="sub_categories">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Child2">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
-          <End Role="wish_list" Type="Self.wish_list" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="wish_list">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ChildFK1">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
-          <End Role="images" Type="Self.images" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="images">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CityFK">
           <End Role="cities" Type="Self.cities" Multiplicity="0..1" />
           <End Role="users" Type="Self.users" Multiplicity="*" />
@@ -364,18 +231,6 @@
             </Principal>
             <Dependent Role="users">
               <PropertyRef Name="CityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ColorFK">
-          <End Role="colors" Type="Self.colors" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="colors">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="ColorId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -403,51 +258,111 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="Fea1">
-          <End Role="features" Type="Self.features" Multiplicity="1" />
-          <End Role="category_features" Type="Self.category_features" Multiplicity="*" />
+        <Association Name="FK_Features_items">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="Features" Type="Self.Features" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="features">
+            <Principal Role="items">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="category_features">
-              <PropertyRef Name="FeatureId" />
+            <Dependent Role="Features">
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="featureFF1">
-          <End Role="features" Type="Self.features" Multiplicity="1" />
-          <End Role="search_features" Type="Self.search_features" Multiplicity="*" />
+        <Association Name="FK_ImageGallery_images">
+          <End Role="images" Type="Self.images" Multiplicity="1" />
+          <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="features">
+            <Principal Role="images">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="search_features">
-              <PropertyRef Name="FeatureId" />
+            <Dependent Role="ImageGallery">
+              <PropertyRef Name="ImageId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FeatureFK33">
-          <End Role="features" Type="Self.features" Multiplicity="0..1" />
-          <End Role="item_features" Type="Self.item_features" Multiplicity="*" />
+        <Association Name="FK_ImageGallery_items">
+          <End Role="items" Type="Self.items" Multiplicity="1" />
+          <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="features">
+            <Principal Role="items">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="item_features">
-              <PropertyRef Name="FeatureId" />
+            <Dependent Role="ImageGallery">
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_User_Comment_User_Comment">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
+        <Association Name="FK_items_categories">
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_items_categories1">
+          <End Role="categories" Type="Self.categories" Multiplicity="0..1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="CategoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_items_images">
+          <End Role="images" Type="Self.images" Multiplicity="0..1" />
+          <End Role="items" Type="Self.items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="images">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="items">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_items_items">
+          <End Role="items" Type="Self.items" Multiplicity="1" />
+          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="order_items">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_items">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
+          <End Role="Tags" Type="Self.Tags" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="items">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tags">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Comment_items">
+          <End Role="items" Type="Self.items" Multiplicity="0..1" />
           <End Role="User_Comment" Type="Self.User_Comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="items_child">
+            <Principal Role="items">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="User_Comment">
-              <PropertyRef Name="ItemChildId" />
+              <PropertyRef Name="ItemId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -460,66 +375,6 @@
             </Principal>
             <Dependent Role="User_Comment">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Item11">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
-          <End Role="baskets" Type="Self.baskets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="baskets">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="item1FK">
-          <End Role="items" Type="Self.items" Multiplicity="1" />
-          <End Role="item_categories" Type="Self.item_categories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="item_categories">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ItemFK11">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="1" />
-          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="order_items">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ItemFK22">
-          <End Role="items" Type="Self.items" Multiplicity="0..1" />
-          <End Role="item_features" Type="Self.item_features" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="item_features">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ManufacturerFK">
-          <End Role="manufacturers" Type="Self.manufacturers" Multiplicity="0..1" />
-          <End Role="items" Type="Self.items" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="manufacturers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items">
-              <PropertyRef Name="ManufacturerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -547,42 +402,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ParentFK">
-          <End Role="items" Type="Self.items" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="ParentItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SearchFK1">
-          <End Role="search" Type="Self.search" Multiplicity="1" />
-          <End Role="search_features" Type="Self.search_features" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="search">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="search_features">
-              <PropertyRef Name="SearchId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ShippingFK11">
-          <End Role="shipping" Type="Self.shipping" Multiplicity="0..1" />
-          <End Role="orders" Type="Self.orders" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="shipping">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="orders">
-              <PropertyRef Name="ShippingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="SiteFK">
           <End Role="sites" Type="Self.sites" Multiplicity="1" />
           <End Role="customers_sites" Type="Self.customers_sites" Multiplicity="*" />
@@ -604,42 +423,6 @@
             </Principal>
             <Dependent Role="items">
               <PropertyRef Name="SiteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SizeFK">
-          <End Role="sizes" Type="Self.sizes" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sizes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="SizeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Sub1FK">
-          <End Role="sub_categories" Type="Self.sub_categories" Multiplicity="1" />
-          <End Role="item_categories" Type="Self.item_categories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sub_categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="item_categories">
-              <PropertyRef Name="SubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="User22">
-          <End Role="users" Type="Self.users" Multiplicity="0..1" />
-          <End Role="wish_list" Type="Self.wish_list" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="wish_list">
-              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -667,87 +450,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="UserFK12">
-          <End Role="users" Type="Self.users" Multiplicity="0..1" />
-          <End Role="baskets" Type="Self.baskets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="baskets">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VatFK">
-          <End Role="vat" Type="Self.vat" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vat">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="VatId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="buyfromallModelStoreContainer">
-          <EntitySet Name="baskets" EntityType="Self.baskets" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="brands" EntityType="Self.brands" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="category_features" EntityType="Self.category_features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="cities" EntityType="Self.cities" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="colors" EntityType="Self.colors" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="customers_sites" EntityType="Self.customers_sites" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="features" EntityType="Self.features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Features" EntityType="Self.Features" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ImageGallery" EntityType="Self.ImageGallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="images" EntityType="Self.images" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="item_categories" EntityType="Self.item_categories" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="item_features" EntityType="Self.item_features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="items" EntityType="Self.items" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="items_child" EntityType="Self.items_child" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="manufacturers" EntityType="Self.manufacturers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="materials" EntityType="Self.materials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="order_items" EntityType="Self.order_items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="payments" EntityType="Self.payments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="search" EntityType="Self.search" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="search_features" EntityType="Self.search_features" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="shipping" EntityType="Self.shipping" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sites" EntityType="Self.sites" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sizes" EntityType="Self.sizes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sub_categories" EntityType="Self.sub_categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tags" EntityType="Self.Tags" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_Comment" EntityType="Self.User_Comment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="vat" EntityType="Self.vat" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="wish_list" EntityType="Self.wish_list" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="BrandFK" Association="Self.BrandFK">
             <End Role="brands" EntitySet="brands" />
             <End Role="items" EntitySet="items" />
           </AssociationSet>
-          <AssociationSet Name="Cate1" Association="Self.Cate1">
-            <End Role="categories" EntitySet="categories" />
-            <End Role="category_features" EntitySet="category_features" />
-          </AssociationSet>
-          <AssociationSet Name="CategoryFK" Association="Self.CategoryFK">
-            <End Role="categories" EntitySet="categories" />
-            <End Role="sub_categories" EntitySet="sub_categories" />
-          </AssociationSet>
-          <AssociationSet Name="Child2" Association="Self.Child2">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="wish_list" EntitySet="wish_list" />
-          </AssociationSet>
-          <AssociationSet Name="ChildFK1" Association="Self.ChildFK1">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="images" EntitySet="images" />
-          </AssociationSet>
           <AssociationSet Name="CityFK" Association="Self.CityFK">
             <End Role="cities" EntitySet="cities" />
             <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="ColorFK" Association="Self.ColorFK">
-            <End Role="colors" EntitySet="colors" />
-            <End Role="items_child" EntitySet="items_child" />
           </AssociationSet>
           <AssociationSet Name="CustomerFK" Association="Self.CustomerFK">
             <End Role="customers" EntitySet="customers" />
@@ -757,45 +485,45 @@
             <End Role="customers" EntitySet="customers" />
             <End Role="items" EntitySet="items" />
           </AssociationSet>
-          <AssociationSet Name="Fea1" Association="Self.Fea1">
-            <End Role="features" EntitySet="features" />
-            <End Role="category_features" EntitySet="category_features" />
+          <AssociationSet Name="FK_Features_items" Association="Self.FK_Features_items">
+            <End Role="items" EntitySet="items" />
+            <End Role="Features" EntitySet="Features" />
           </AssociationSet>
-          <AssociationSet Name="featureFF1" Association="Self.featureFF1">
-            <End Role="features" EntitySet="features" />
-            <End Role="search_features" EntitySet="search_features" />
+          <AssociationSet Name="FK_ImageGallery_images" Association="Self.FK_ImageGallery_images">
+            <End Role="images" EntitySet="images" />
+            <End Role="ImageGallery" EntitySet="ImageGallery" />
           </AssociationSet>
-          <AssociationSet Name="FeatureFK33" Association="Self.FeatureFK33">
-            <End Role="features" EntitySet="features" />
-            <End Role="item_features" EntitySet="item_features" />
+          <AssociationSet Name="FK_ImageGallery_items" Association="Self.FK_ImageGallery_items">
+            <End Role="items" EntitySet="items" />
+            <End Role="ImageGallery" EntitySet="ImageGallery" />
           </AssociationSet>
-          <AssociationSet Name="FK_User_Comment_User_Comment" Association="Self.FK_User_Comment_User_Comment">
-            <End Role="items_child" EntitySet="items_child" />
+          <AssociationSet Name="FK_items_categories" Association="Self.FK_items_categories">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_categories1" Association="Self.FK_items_categories1">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_images" Association="Self.FK_items_images">
+            <End Role="images" EntitySet="images" />
+            <End Role="items" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_items_items" Association="Self.FK_order_items_items">
+            <End Role="items" EntitySet="items" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_items" Association="Self.FK_Tags_items">
+            <End Role="items" EntitySet="items" />
+            <End Role="Tags" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Comment_items" Association="Self.FK_User_Comment_items">
+            <End Role="items" EntitySet="items" />
             <End Role="User_Comment" EntitySet="User_Comment" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Comment_users" Association="Self.FK_User_Comment_users">
             <End Role="users" EntitySet="users" />
             <End Role="User_Comment" EntitySet="User_Comment" />
-          </AssociationSet>
-          <AssociationSet Name="Item11" Association="Self.Item11">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="baskets" EntitySet="baskets" />
-          </AssociationSet>
-          <AssociationSet Name="item1FK" Association="Self.item1FK">
-            <End Role="items" EntitySet="items" />
-            <End Role="item_categories" EntitySet="item_categories" />
-          </AssociationSet>
-          <AssociationSet Name="ItemFK11" Association="Self.ItemFK11">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="order_items" EntitySet="order_items" />
-          </AssociationSet>
-          <AssociationSet Name="ItemFK22" Association="Self.ItemFK22">
-            <End Role="items" EntitySet="items" />
-            <End Role="item_features" EntitySet="item_features" />
-          </AssociationSet>
-          <AssociationSet Name="ManufacturerFK" Association="Self.ManufacturerFK">
-            <End Role="manufacturers" EntitySet="manufacturers" />
-            <End Role="items" EntitySet="items" />
           </AssociationSet>
           <AssociationSet Name="OrderFK" Association="Self.OrderFK">
             <End Role="orders" EntitySet="orders" />
@@ -805,18 +533,6 @@
             <End Role="orders" EntitySet="orders" />
             <End Role="payments" EntitySet="payments" />
           </AssociationSet>
-          <AssociationSet Name="ParentFK" Association="Self.ParentFK">
-            <End Role="items" EntitySet="items" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
-          <AssociationSet Name="SearchFK1" Association="Self.SearchFK1">
-            <End Role="search" EntitySet="search" />
-            <End Role="search_features" EntitySet="search_features" />
-          </AssociationSet>
-          <AssociationSet Name="ShippingFK11" Association="Self.ShippingFK11">
-            <End Role="shipping" EntitySet="shipping" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
           <AssociationSet Name="SiteFK" Association="Self.SiteFK">
             <End Role="sites" EntitySet="sites" />
             <End Role="customers_sites" EntitySet="customers_sites" />
@@ -824,18 +540,6 @@
           <AssociationSet Name="SiteFk1" Association="Self.SiteFk1">
             <End Role="sites" EntitySet="sites" />
             <End Role="items" EntitySet="items" />
-          </AssociationSet>
-          <AssociationSet Name="SizeFK" Association="Self.SizeFK">
-            <End Role="sizes" EntitySet="sizes" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
-          <AssociationSet Name="Sub1FK" Association="Self.Sub1FK">
-            <End Role="sub_categories" EntitySet="sub_categories" />
-            <End Role="item_categories" EntitySet="item_categories" />
-          </AssociationSet>
-          <AssociationSet Name="User22" Association="Self.User22">
-            <End Role="users" EntitySet="users" />
-            <End Role="wish_list" EntitySet="wish_list" />
           </AssociationSet>
           <AssociationSet Name="User23" Association="Self.User23">
             <End Role="users" EntitySet="users" />
@@ -845,67 +549,129 @@
             <End Role="users" EntitySet="users" />
             <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="UserFK12" Association="Self.UserFK12">
-            <End Role="users" EntitySet="users" />
-            <End Role="baskets" EntitySet="baskets" />
-          </AssociationSet>
-          <AssociationSet Name="VatFK" Association="Self.VatFK">
-            <End Role="vat" EntitySet="vat" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="buyfromallModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="basket">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemChildId" Type="Int32" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="items_child" Relationship="Self.Item11" FromRole="baskets" ToRole="items_child" />
-          <NavigationProperty Name="user" Relationship="Self.UserFK12" FromRole="baskets" ToRole="users" />
-        </EntityType>
+        <EntityContainer Name="buyfromallEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="brands" EntityType="buyfromallModel.brand" />
+          <EntitySet Name="categories" EntityType="buyfromallModel.category" />
+          <EntitySet Name="cities" EntityType="buyfromallModel.city" />
+          <EntitySet Name="customers" EntityType="buyfromallModel.customer" />
+          <EntitySet Name="Features" EntityType="buyfromallModel.Feature" />
+          <EntitySet Name="images" EntityType="buyfromallModel.image" />
+          <EntitySet Name="order_items" EntityType="buyfromallModel.order_items" />
+          <EntitySet Name="orders" EntityType="buyfromallModel.order" />
+          <EntitySet Name="payments" EntityType="buyfromallModel.payment" />
+          <EntitySet Name="searches" EntityType="buyfromallModel.search" />
+          <EntitySet Name="sites" EntityType="buyfromallModel.site" />
+          <EntitySet Name="sysdiagrams" EntityType="buyfromallModel.sysdiagram" />
+          <EntitySet Name="Tags" EntityType="buyfromallModel.Tag" />
+          <EntitySet Name="User_Comment" EntityType="buyfromallModel.User_Comment" />
+          <EntitySet Name="users" EntityType="buyfromallModel.user" />
+          <AssociationSet Name="CityFK" Association="buyfromallModel.CityFK">
+            <End Role="city" EntitySet="cities" />
+            <End Role="user" EntitySet="users" />
+          </AssociationSet>
+          <AssociationSet Name="OrderFK" Association="buyfromallModel.OrderFK">
+            <End Role="order" EntitySet="orders" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="OrderFK111" Association="buyfromallModel.OrderFK111">
+            <End Role="order" EntitySet="orders" />
+            <End Role="payment" EntitySet="payments" />
+          </AssociationSet>
+          <AssociationSet Name="userFK1" Association="buyfromallModel.userFK1">
+            <End Role="user" EntitySet="users" />
+            <End Role="order" EntitySet="orders" />
+          </AssociationSet>
+          <AssociationSet Name="User23" Association="buyfromallModel.User23">
+            <End Role="user" EntitySet="users" />
+            <End Role="search" EntitySet="searches" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Comment_users" Association="buyfromallModel.FK_User_Comment_users">
+            <End Role="user" EntitySet="users" />
+            <End Role="User_Comment" EntitySet="User_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="customers_sites" Association="buyfromallModel.customers_sites">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="site" EntitySet="sites" />
+          </AssociationSet>
+          <EntitySet Name="items" EntityType="buyfromallModel.item" />
+          <AssociationSet Name="BrandFK" Association="buyfromallModel.BrandFK">
+            <End Role="brand" EntitySet="brands" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_categories" Association="buyfromallModel.FK_items_categories">
+            <End Role="category" EntitySet="categories" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_categories1" Association="buyfromallModel.FK_items_categories1">
+            <End Role="category" EntitySet="categories" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="CustomerIdFK" Association="buyfromallModel.CustomerIdFK">
+            <End Role="customer" EntitySet="customers" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Features_items" Association="buyfromallModel.FK_Features_items">
+            <End Role="item" EntitySet="items" />
+            <End Role="Feature" EntitySet="Features" />
+          </AssociationSet>
+          <AssociationSet Name="FK_items_images" Association="buyfromallModel.FK_items_images">
+            <End Role="image" EntitySet="images" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_order_items_items" Association="buyfromallModel.FK_order_items_items">
+            <End Role="item" EntitySet="items" />
+            <End Role="order_items" EntitySet="order_items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tags_items" Association="buyfromallModel.FK_Tags_items">
+            <End Role="item" EntitySet="items" />
+            <End Role="Tag" EntitySet="Tags" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Comment_items" Association="buyfromallModel.FK_User_Comment_items">
+            <End Role="item" EntitySet="items" />
+            <End Role="User_Comment" EntitySet="User_Comment" />
+          </AssociationSet>
+          <AssociationSet Name="SiteFk1" Association="buyfromallModel.SiteFk1">
+            <End Role="site" EntitySet="sites" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+          <AssociationSet Name="ImageGallery" Association="buyfromallModel.ImageGallery">
+            <End Role="image" EntitySet="images" />
+            <End Role="item" EntitySet="items" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="brand">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="items" Relationship="Self.BrandFK" FromRole="brands" ToRole="items" />
           <Property Name="ImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items" Relationship="buyfromallModel.BrandFK" FromRole="brand" ToRole="item" />
         </EntityType>
         <EntityType Name="category">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="sub_categories" Relationship="Self.CategoryFK" FromRole="categories" ToRole="sub_categories" />
-          <NavigationProperty Name="features" Relationship="buyfromallModel.category_features" FromRole="category" ToRole="feature" />
+          <NavigationProperty Name="items" Relationship="buyfromallModel.FK_items_categories" FromRole="category" ToRole="item" />
+          <NavigationProperty Name="items1" Relationship="buyfromallModel.FK_items_categories1" FromRole="category" ToRole="item" />
         </EntityType>
         <EntityType Name="city">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="users" Relationship="Self.CityFK" FromRole="cities" ToRole="users" />
-        </EntityType>
-        <EntityType Name="color">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ColorName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RgbColor" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="items_child" Relationship="Self.ColorFK" FromRole="colors" ToRole="items_child" />
+          <NavigationProperty Name="users" Relationship="buyfromallModel.CityFK" FromRole="city" ToRole="user" />
         </EntityType>
         <EntityType Name="customer">
           <Key>
@@ -923,18 +689,17 @@
           <Property Name="CreationDate" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="UserName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Password" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="items" Relationship="Self.CustomerIdFK" FromRole="customers" ToRole="items" />
           <NavigationProperty Name="sites" Relationship="buyfromallModel.customers_sites" FromRole="customer" ToRole="site" />
+          <NavigationProperty Name="items" Relationship="buyfromallModel.CustomerIdFK" FromRole="customer" ToRole="item" />
         </EntityType>
-        <EntityType Name="feature">
+        <EntityType Name="Feature">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="item_features" Relationship="Self.FeatureFK33" FromRole="features" ToRole="item_features" />
-          <NavigationProperty Name="searches" Relationship="buyfromallModel.search_features" FromRole="feature" ToRole="search" />
-          <NavigationProperty Name="categories" Relationship="buyfromallModel.category_features" FromRole="feature" ToRole="category" />
+          <Property Name="FeatureName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" />
+          <NavigationProperty Name="item" Relationship="buyfromallModel.FK_Features_items" FromRole="Feature" ToRole="item" />
         </EntityType>
         <EntityType Name="image">
           <Key>
@@ -944,114 +709,40 @@
           <Property Name="ImageSrc" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="ImageUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="ItemChildId" Type="Int32" />
-          <NavigationProperty Name="items_child" Relationship="Self.ChildFK1" FromRole="images" ToRole="items_child" />
-        </EntityType>
-        <EntityType Name="item_features">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemId" Type="Int32" />
-          <Property Name="FeatureId" Type="Int32" />
-          <Property Name="Value" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="feature" Relationship="Self.FeatureFK33" FromRole="item_features" ToRole="features" />
-          <NavigationProperty Name="item" Relationship="Self.ItemFK22" FromRole="item_features" ToRole="items" />
-        </EntityType>
-        <EntityType Name="item">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Barcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="CustomerId" Type="Int32" />
-          <Property Name="SiteId" Type="Int32" />
-          <Property Name="BrandId" Type="Int32" />
-          <Property Name="ManufacturerId" Type="Int32" />
-          <NavigationProperty Name="brand" Relationship="Self.BrandFK" FromRole="items" ToRole="brands" />
-          <NavigationProperty Name="customer" Relationship="Self.CustomerIdFK" FromRole="items" ToRole="customers" />
-          <NavigationProperty Name="item_features" Relationship="Self.ItemFK22" FromRole="items" ToRole="item_features" />
-          <NavigationProperty Name="manufacturer" Relationship="Self.ManufacturerFK" FromRole="items" ToRole="manufacturers" />
-          <NavigationProperty Name="items_child" Relationship="Self.ParentFK" FromRole="items" ToRole="items_child" />
-          <NavigationProperty Name="site" Relationship="Self.SiteFk1" FromRole="items" ToRole="sites" />
-          <NavigationProperty Name="sub_categories" Relationship="buyfromallModel.item_categories" FromRole="item" ToRole="sub_categories" />
-        </EntityType>
-        <EntityType Name="items_child">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="Stars" Type="Double" />
-          <Property Name="VatId" Type="Int32" />
-          <Property Name="Price" Type="Double" />
-          <Property Name="PresentLess" Type="Double" />
-          <Property Name="ColorId" Type="Int32" />
-          <Property Name="Count" Type="Int32" />
-          <Property Name="Barcode" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ParentItemId" Type="Int32" />
-          <Property Name="ShippingPrice" Type="Double" />
-          <Property Name="Status" Type="Int16" />
-          <Property Name="ShippingDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="ReturnDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="TimeShipping" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="CreationDate" Type="DateTime" Precision="0" />
-          <Property Name="UnitsStock" Type="Int32" />
-          <Property Name="SizeId" Type="Int32" />
-          <NavigationProperty Name="baskets" Relationship="Self.Item11" FromRole="items_child" ToRole="baskets" />
-          <NavigationProperty Name="color" Relationship="Self.ColorFK" FromRole="items_child" ToRole="colors" />
-          <NavigationProperty Name="images" Relationship="Self.ChildFK1" FromRole="items_child" ToRole="images" />
-          <NavigationProperty Name="item" Relationship="Self.ParentFK" FromRole="items_child" ToRole="items" />
-          <NavigationProperty Name="wish_list" Relationship="Self.Child2" FromRole="items_child" ToRole="wish_list" />
-          <NavigationProperty Name="order_items" Relationship="Self.ItemFK11" FromRole="items_child" ToRole="order_items" />
-          <NavigationProperty Name="size" Relationship="Self.SizeFK" FromRole="items_child" ToRole="sizes" />
-          <NavigationProperty Name="vat" Relationship="Self.VatFK" FromRole="items_child" ToRole="vat" />
-          <NavigationProperty Name="User_Comment" Relationship="buyfromallModel.FK_User_Comment_User_Comment" FromRole="items_child" ToRole="User_Comment" />
-        </EntityType>
-        <EntityType Name="manufacturer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="items" Relationship="Self.ManufacturerFK" FromRole="manufacturers" ToRole="items" />
-        </EntityType>
-        <EntityType Name="material">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LoaziName" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="items" Relationship="buyfromallModel.FK_items_images" FromRole="image" ToRole="item" />
+          <NavigationProperty Name="items1" Relationship="buyfromallModel.ImageGallery" FromRole="image" ToRole="item" />
         </EntityType>
         <EntityType Name="order_items">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemChildId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
           <Property Name="Count" Type="Int32" />
           <Property Name="Price" Type="Double" />
           <Property Name="Status" Type="Int32" />
           <Property Name="OrderId" Type="Int32" />
-          <NavigationProperty Name="items_child" Relationship="Self.ItemFK11" FromRole="order_items" ToRole="items_child" />
-          <NavigationProperty Name="order" Relationship="Self.OrderFK" FromRole="order_items" ToRole="orders" />
+          <NavigationProperty Name="order" Relationship="buyfromallModel.OrderFK" FromRole="order_items" ToRole="order" />
+          <NavigationProperty Name="item" Relationship="buyfromallModel.FK_order_items_items" FromRole="order_items" ToRole="item" />
         </EntityType>
         <EntityType Name="order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ShippingId" Type="Int32" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="TotalPrice" Type="Double" />
           <Property Name="Status" Type="Int32" />
           <Property Name="Paid" Type="Int16" />
-          <NavigationProperty Name="order_items" Relationship="Self.OrderFK" FromRole="orders" ToRole="order_items" />
-          <NavigationProperty Name="payments" Relationship="Self.OrderFK111" FromRole="orders" ToRole="payments" />
-          <NavigationProperty Name="shipping" Relationship="Self.ShippingFK11" FromRole="orders" ToRole="shipping" />
-          <NavigationProperty Name="user" Relationship="Self.userFK1" FromRole="orders" ToRole="users" />
+          <Property Name="BuilingName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="order_items" Relationship="buyfromallModel.OrderFK" FromRole="order" ToRole="order_items" />
+          <NavigationProperty Name="payments" Relationship="buyfromallModel.OrderFK111" FromRole="order" ToRole="payment" />
+          <NavigationProperty Name="user" Relationship="buyfromallModel.userFK1" FromRole="order" ToRole="user" />
         </EntityType>
         <EntityType Name="payment">
           <Key>
@@ -1062,7 +753,7 @@
           <Property Name="OrderId" Type="Int32" />
           <Property Name="Date" Type="DateTime" Precision="0" />
           <Property Name="Type" Type="Int32" />
-          <NavigationProperty Name="order" Relationship="Self.OrderFK111" FromRole="payments" ToRole="orders" />
+          <NavigationProperty Name="order" Relationship="buyfromallModel.OrderFK111" FromRole="payment" ToRole="order" />
         </EntityType>
         <EntityType Name="search">
           <Key>
@@ -1071,19 +762,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DateSearch" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="user" Relationship="Self.User23" FromRole="search" ToRole="users" />
-          <NavigationProperty Name="features" Relationship="buyfromallModel.search_features" FromRole="search" ToRole="feature" />
-        </EntityType>
-        <EntityType Name="shipping">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="ShippingDate" Type="DateTime" Precision="0" />
-          <Property Name="CreationDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="orders" Relationship="Self.ShippingFK11" FromRole="shipping" ToRole="orders" />
+          <NavigationProperty Name="user" Relationship="buyfromallModel.User23" FromRole="search" ToRole="user" />
         </EntityType>
         <EntityType Name="site">
           <Key>
@@ -1093,27 +772,40 @@
           <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="items" Relationship="Self.SiteFk1" FromRole="sites" ToRole="items" />
           <NavigationProperty Name="customers" Relationship="buyfromallModel.customers_sites" FromRole="site" ToRole="customer" />
+          <NavigationProperty Name="items" Relationship="buyfromallModel.SiteFk1" FromRole="site" ToRole="item" />
         </EntityType>
-        <EntityType Name="size">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tag">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Size1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="items_child" Relationship="Self.SizeFK" FromRole="sizes" ToRole="items_child" />
+          <Property Name="TagName" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" />
+          <NavigationProperty Name="item" Relationship="buyfromallModel.FK_Tags_items" FromRole="Tag" ToRole="item" />
         </EntityType>
-        <EntityType Name="sub_categories">
+        <EntityType Name="User_Comment">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="CategoryId" Type="Int32" />
-          <NavigationProperty Name="category" Relationship="Self.CategoryFK" FromRole="sub_categories" ToRole="categories" />
-          <NavigationProperty Name="items" Relationship="buyfromallModel.item_categories" FromRole="sub_categories" ToRole="item" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Rate" Type="Int32" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <NavigationProperty Name="user" Relationship="buyfromallModel.FK_User_Comment_users" FromRole="User_Comment" ToRole="user" />
+          <NavigationProperty Name="item" Relationship="buyfromallModel.FK_User_Comment_items" FromRole="User_Comment" ToRole="item" />
         </EntityType>
         <EntityType Name="user">
           <Key>
@@ -1133,243 +825,33 @@
           <Property Name="Code" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Fax" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="CityId" Type="Int32" />
-          <NavigationProperty Name="baskets" Relationship="Self.UserFK12" FromRole="users" ToRole="baskets" />
-          <NavigationProperty Name="city" Relationship="Self.CityFK" FromRole="users" ToRole="cities" />
-          <NavigationProperty Name="orders" Relationship="Self.userFK1" FromRole="users" ToRole="orders" />
-          <NavigationProperty Name="searches" Relationship="Self.User23" FromRole="users" ToRole="search" />
-          <NavigationProperty Name="wish_list" Relationship="Self.User22" FromRole="users" ToRole="wish_list" />
-          <NavigationProperty Name="User_Comment" Relationship="buyfromallModel.FK_User_Comment_users" FromRole="user" ToRole="User_Comment" />
           <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="FaceId" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Glasses" Type="Boolean" />
+          <Property Name="Gender" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" />
+          <NavigationProperty Name="city" Relationship="buyfromallModel.CityFK" FromRole="user" ToRole="city" />
+          <NavigationProperty Name="orders" Relationship="buyfromallModel.userFK1" FromRole="user" ToRole="order" />
+          <NavigationProperty Name="searches" Relationship="buyfromallModel.User23" FromRole="user" ToRole="search" />
+          <NavigationProperty Name="User_Comment" Relationship="buyfromallModel.FK_User_Comment_users" FromRole="user" ToRole="User_Comment" />
         </EntityType>
-        <EntityType Name="vat">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="items_child" Relationship="Self.VatFK" FromRole="vat" ToRole="items_child" />
-        </EntityType>
-        <EntityType Name="wish_list">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ItemChildId" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <NavigationProperty Name="items_child" Relationship="Self.Child2" FromRole="wish_list" ToRole="items_child" />
-          <NavigationProperty Name="user" Relationship="Self.User22" FromRole="wish_list" ToRole="users" />
-        </EntityType>
-        <Association Name="Item11">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
-          <End Role="baskets" Type="Self.basket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="baskets">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserFK12">
-          <End Role="users" Type="Self.user" Multiplicity="0..1" />
-          <End Role="baskets" Type="Self.basket" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="baskets">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="BrandFK">
-          <End Role="brands" Type="Self.brand" Multiplicity="0..1" />
-          <End Role="items" Type="Self.item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="brands">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items">
-              <PropertyRef Name="BrandId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CategoryFK">
-          <End Role="categories" Type="Self.category" Multiplicity="0..1" />
-          <End Role="sub_categories" Type="Self.sub_categories" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="categories">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="sub_categories">
-              <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CityFK">
-          <End Role="cities" Type="Self.city" Multiplicity="0..1" />
-          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <End Type="buyfromallModel.city" Role="city" Multiplicity="0..1" />
+          <End Type="buyfromallModel.user" Role="user" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="cities">
+            <Principal Role="city">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="users">
+            <Dependent Role="user">
               <PropertyRef Name="CityId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ColorFK">
-          <End Role="colors" Type="Self.color" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="colors">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="ColorId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CustomerIdFK">
-          <End Role="customers" Type="Self.customer" Multiplicity="0..1" />
-          <End Role="items" Type="Self.item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="customers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FeatureFK33">
-          <End Role="features" Type="Self.feature" Multiplicity="0..1" />
-          <End Role="item_features" Type="Self.item_features" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="features">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="item_features">
-              <PropertyRef Name="FeatureId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ChildFK1">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
-          <End Role="images" Type="Self.image" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="images">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ItemFK22">
-          <End Role="items" Type="Self.item" Multiplicity="0..1" />
-          <End Role="item_features" Type="Self.item_features" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="item_features">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ManufacturerFK">
-          <End Role="manufacturers" Type="Self.manufacturer" Multiplicity="0..1" />
-          <End Role="items" Type="Self.item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="manufacturers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items">
-              <PropertyRef Name="ManufacturerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ParentFK">
-          <End Role="items" Type="Self.item" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="ParentItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SiteFk1">
-          <End Role="sites" Type="Self.site" Multiplicity="0..1" />
-          <End Role="items" Type="Self.item" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sites">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items">
-              <PropertyRef Name="SiteId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="Child2">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="0..1" />
-          <End Role="wish_list" Type="Self.wish_list" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="wish_list">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ItemFK11">
-          <End Role="items_child" Type="Self.items_child" Multiplicity="1" />
-          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="order_items">
-              <PropertyRef Name="ItemChildId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="SizeFK">
-          <End Role="sizes" Type="Self.size" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="sizes">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="SizeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="VatFK">
-          <End Role="vat" Type="Self.vat" Multiplicity="0..1" />
-          <End Role="items_child" Type="Self.items_child" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="vat">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="items_child">
-              <PropertyRef Name="VatId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="OrderFK">
-          <End Role="orders" Type="Self.order" Multiplicity="0..1" />
-          <End Role="order_items" Type="Self.order_items" Multiplicity="*" />
+          <End Type="buyfromallModel.order" Role="order" Multiplicity="0..1" />
+          <End Type="buyfromallModel.order_items" Role="order_items" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="orders">
+            <Principal Role="order">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="order_items">
@@ -1378,230 +860,38 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="OrderFK111">
-          <End Role="orders" Type="Self.order" Multiplicity="0..1" />
-          <End Role="payments" Type="Self.payment" Multiplicity="*" />
+          <End Type="buyfromallModel.order" Role="order" Multiplicity="0..1" />
+          <End Type="buyfromallModel.payment" Role="payment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="orders">
+            <Principal Role="order">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="payments">
+            <Dependent Role="payment">
               <PropertyRef Name="OrderId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="ShippingFK11">
-          <End Role="shipping" Type="Self.shipping" Multiplicity="0..1" />
-          <End Role="orders" Type="Self.order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="shipping">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="orders">
-              <PropertyRef Name="ShippingId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="userFK1">
-          <End Role="users" Type="Self.user" Multiplicity="1" />
-          <End Role="orders" Type="Self.order" Multiplicity="*" />
+          <End Type="buyfromallModel.user" Role="user" Multiplicity="1" />
+          <End Type="buyfromallModel.order" Role="order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="user">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="orders">
+            <Dependent Role="order">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="User23">
-          <End Role="users" Type="Self.user" Multiplicity="0..1" />
-          <End Role="search" Type="Self.search" Multiplicity="*" />
+          <End Type="buyfromallModel.user" Role="user" Multiplicity="0..1" />
+          <End Type="buyfromallModel.search" Role="search" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="users">
+            <Principal Role="user">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="search">
               <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="User22">
-          <End Role="users" Type="Self.user" Multiplicity="0..1" />
-          <End Role="wish_list" Type="Self.wish_list" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="users">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="wish_list">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="buyfromallEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="baskets" EntityType="Self.basket" />
-          <EntitySet Name="brands" EntityType="Self.brand" />
-          <EntitySet Name="categories" EntityType="Self.category" />
-          <EntitySet Name="cities" EntityType="Self.city" />
-          <EntitySet Name="colors" EntityType="Self.color" />
-          <EntitySet Name="customers" EntityType="Self.customer" />
-          <EntitySet Name="features" EntityType="Self.feature" />
-          <EntitySet Name="images" EntityType="Self.image" />
-          <EntitySet Name="item_features" EntityType="Self.item_features" />
-          <EntitySet Name="items" EntityType="Self.item" />
-          <EntitySet Name="items_child" EntityType="Self.items_child" />
-          <EntitySet Name="manufacturers" EntityType="Self.manufacturer" />
-          <EntitySet Name="materials" EntityType="Self.material" />
-          <EntitySet Name="order_items" EntityType="Self.order_items" />
-          <EntitySet Name="orders" EntityType="Self.order" />
-          <EntitySet Name="payments" EntityType="Self.payment" />
-          <EntitySet Name="searches" EntityType="Self.search" />
-          <EntitySet Name="shippings" EntityType="Self.shipping" />
-          <EntitySet Name="sites" EntityType="Self.site" />
-          <EntitySet Name="sizes" EntityType="Self.size" />
-          <EntitySet Name="sub_categories" EntityType="Self.sub_categories" />
-          <EntitySet Name="users" EntityType="Self.user" />
-          <EntitySet Name="vats" EntityType="Self.vat" />
-          <EntitySet Name="wish_list" EntityType="Self.wish_list" />
-          <AssociationSet Name="Item11" Association="Self.Item11">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="baskets" EntitySet="baskets" />
-          </AssociationSet>
-          <AssociationSet Name="UserFK12" Association="Self.UserFK12">
-            <End Role="users" EntitySet="users" />
-            <End Role="baskets" EntitySet="baskets" />
-          </AssociationSet>
-          <AssociationSet Name="BrandFK" Association="Self.BrandFK">
-            <End Role="brands" EntitySet="brands" />
-            <End Role="items" EntitySet="items" />
-          </AssociationSet>
-          <AssociationSet Name="CategoryFK" Association="Self.CategoryFK">
-            <End Role="categories" EntitySet="categories" />
-            <End Role="sub_categories" EntitySet="sub_categories" />
-          </AssociationSet>
-          <AssociationSet Name="CityFK" Association="Self.CityFK">
-            <End Role="cities" EntitySet="cities" />
-            <End Role="users" EntitySet="users" />
-          </AssociationSet>
-          <AssociationSet Name="ColorFK" Association="Self.ColorFK">
-            <End Role="colors" EntitySet="colors" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
-          <AssociationSet Name="CustomerIdFK" Association="Self.CustomerIdFK">
-            <End Role="customers" EntitySet="customers" />
-            <End Role="items" EntitySet="items" />
-          </AssociationSet>
-          <AssociationSet Name="FeatureFK33" Association="Self.FeatureFK33">
-            <End Role="features" EntitySet="features" />
-            <End Role="item_features" EntitySet="item_features" />
-          </AssociationSet>
-          <AssociationSet Name="ChildFK1" Association="Self.ChildFK1">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="images" EntitySet="images" />
-          </AssociationSet>
-          <AssociationSet Name="ItemFK22" Association="Self.ItemFK22">
-            <End Role="items" EntitySet="items" />
-            <End Role="item_features" EntitySet="item_features" />
-          </AssociationSet>
-          <AssociationSet Name="ManufacturerFK" Association="Self.ManufacturerFK">
-            <End Role="manufacturers" EntitySet="manufacturers" />
-            <End Role="items" EntitySet="items" />
-          </AssociationSet>
-          <AssociationSet Name="ParentFK" Association="Self.ParentFK">
-            <End Role="items" EntitySet="items" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
-          <AssociationSet Name="SiteFk1" Association="Self.SiteFk1">
-            <End Role="sites" EntitySet="sites" />
-            <End Role="items" EntitySet="items" />
-          </AssociationSet>
-          <AssociationSet Name="Child2" Association="Self.Child2">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="wish_list" EntitySet="wish_list" />
-          </AssociationSet>
-          <AssociationSet Name="ItemFK11" Association="Self.ItemFK11">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="order_items" EntitySet="order_items" />
-          </AssociationSet>
-          <AssociationSet Name="SizeFK" Association="Self.SizeFK">
-            <End Role="sizes" EntitySet="sizes" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
-          <AssociationSet Name="VatFK" Association="Self.VatFK">
-            <End Role="vat" EntitySet="vats" />
-            <End Role="items_child" EntitySet="items_child" />
-          </AssociationSet>
-          <AssociationSet Name="OrderFK" Association="Self.OrderFK">
-            <End Role="orders" EntitySet="orders" />
-            <End Role="order_items" EntitySet="order_items" />
-          </AssociationSet>
-          <AssociationSet Name="OrderFK111" Association="Self.OrderFK111">
-            <End Role="orders" EntitySet="orders" />
-            <End Role="payments" EntitySet="payments" />
-          </AssociationSet>
-          <AssociationSet Name="ShippingFK11" Association="Self.ShippingFK11">
-            <End Role="shipping" EntitySet="shippings" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="userFK1" Association="Self.userFK1">
-            <End Role="users" EntitySet="users" />
-            <End Role="orders" EntitySet="orders" />
-          </AssociationSet>
-          <AssociationSet Name="User23" Association="Self.User23">
-            <End Role="users" EntitySet="users" />
-            <End Role="search" EntitySet="searches" />
-          </AssociationSet>
-          <AssociationSet Name="User22" Association="Self.User22">
-            <End Role="users" EntitySet="users" />
-            <End Role="wish_list" EntitySet="wish_list" />
-          </AssociationSet>
-          <EntitySet Name="User_Comment" EntityType="buyfromallModel.User_Comment" />
-          <AssociationSet Name="FK_User_Comment_User_Comment" Association="buyfromallModel.FK_User_Comment_User_Comment">
-            <End Role="items_child" EntitySet="items_child" />
-            <End Role="User_Comment" EntitySet="User_Comment" />
-          </AssociationSet>
-          <AssociationSet Name="FK_User_Comment_users" Association="buyfromallModel.FK_User_Comment_users">
-            <End Role="user" EntitySet="users" />
-            <End Role="User_Comment" EntitySet="User_Comment" />
-          </AssociationSet>
-          <AssociationSet Name="customers_sites" Association="buyfromallModel.customers_sites">
-            <End Role="customer" EntitySet="customers" />
-            <End Role="site" EntitySet="sites" />
-          </AssociationSet>
-          <AssociationSet Name="item_categories" Association="buyfromallModel.item_categories">
-            <End Role="item" EntitySet="items" />
-            <End Role="sub_categories" EntitySet="sub_categories" />
-          </AssociationSet>
-          <AssociationSet Name="search_features" Association="buyfromallModel.search_features">
-            <End Role="feature" EntitySet="features" />
-            <End Role="search" EntitySet="searches" />
-          </AssociationSet>
-          <AssociationSet Name="category_features" Association="buyfromallModel.category_features">
-            <End Role="category" EntitySet="categories" />
-            <End Role="feature" EntitySet="features" />
-          </AssociationSet>
-          </EntityContainer>
-        <EntityType Name="User_Comment">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Date" Type="DateTime" Precision="3" />
-          <Property Name="Rate" Type="Int32" />
-          <Property Name="UserId" Type="Int32" />
-          <Property Name="ItemChildId" Type="Int32" />
-          <NavigationProperty Name="items_child" Relationship="buyfromallModel.FK_User_Comment_User_Comment" FromRole="User_Comment" ToRole="items_child" />
-          <NavigationProperty Name="user" Relationship="buyfromallModel.FK_User_Comment_users" FromRole="User_Comment" ToRole="user" />
-        </EntityType>
-        <Association Name="FK_User_Comment_User_Comment">
-          <End Type="buyfromallModel.items_child" Role="items_child" Multiplicity="0..1" />
-          <End Type="buyfromallModel.User_Comment" Role="User_Comment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="items_child">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="User_Comment">
-              <PropertyRef Name="ItemChildId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1621,17 +911,163 @@
           <End Type="buyfromallModel.customer" Role="customer" Multiplicity="*" />
           <End Type="buyfromallModel.site" Role="site" Multiplicity="*" />
         </Association>
-        <Association Name="item_categories">
+        <EntityType Name="item">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="SiteId" Type="Int32" />
+          <Property Name="BrandId" Type="Int32" />
+          <Property Name="Availablity" Type="Boolean" />
+          <Property Name="CategoryId" Type="Int32" />
+          <Property Name="CategoryType" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ImageId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Popular" Type="Boolean" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="Type" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="brand" Relationship="buyfromallModel.BrandFK" FromRole="item" ToRole="brand" />
+          <NavigationProperty Name="category" Relationship="buyfromallModel.FK_items_categories" FromRole="item" ToRole="category" />
+          <NavigationProperty Name="category1" Relationship="buyfromallModel.FK_items_categories1" FromRole="item" ToRole="category" />
+          <NavigationProperty Name="customer" Relationship="buyfromallModel.CustomerIdFK" FromRole="item" ToRole="customer" />
+          <NavigationProperty Name="Features" Relationship="buyfromallModel.FK_Features_items" FromRole="item" ToRole="Feature" />
+          <NavigationProperty Name="image" Relationship="buyfromallModel.FK_items_images" FromRole="item" ToRole="image" />
+          <NavigationProperty Name="order_items" Relationship="buyfromallModel.FK_order_items_items" FromRole="item" ToRole="order_items" />
+          <NavigationProperty Name="Tags" Relationship="buyfromallModel.FK_Tags_items" FromRole="item" ToRole="Tag" />
+          <NavigationProperty Name="User_Comment" Relationship="buyfromallModel.FK_User_Comment_items" FromRole="item" ToRole="User_Comment" />
+          <NavigationProperty Name="site" Relationship="buyfromallModel.SiteFk1" FromRole="item" ToRole="site" />
+          <NavigationProperty Name="images" Relationship="buyfromallModel.ImageGallery" FromRole="item" ToRole="image" />
+        </EntityType>
+        <Association Name="BrandFK">
+          <End Type="buyfromallModel.brand" Role="brand" Multiplicity="0..1" />
           <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
-          <End Type="buyfromallModel.sub_categories" Role="sub_categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="brand">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="BrandId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="search_features">
-          <End Type="buyfromallModel.feature" Role="feature" Multiplicity="*" />
-          <End Type="buyfromallModel.search" Role="search" Multiplicity="*" />
+        <Association Name="FK_items_categories">
+          <End Type="buyfromallModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="category_features">
-          <End Type="buyfromallModel.category" Role="category" Multiplicity="*" />
-          <End Type="buyfromallModel.feature" Role="feature" Multiplicity="*" />
+        <Association Name="FK_items_categories1">
+          <End Type="buyfromallModel.category" Role="category" Multiplicity="0..1" />
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="CategoryType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CustomerIdFK">
+          <End Type="buyfromallModel.customer" Role="customer" Multiplicity="0..1" />
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customer">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Features_items">
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="0..1" />
+          <End Type="buyfromallModel.Feature" Role="Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feature">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_items_images">
+          <End Type="buyfromallModel.image" Role="image" Multiplicity="0..1" />
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="image">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="ImageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_order_items_items">
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="1" />
+          <End Type="buyfromallModel.order_items" Role="order_items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="order_items">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tags_items">
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="0..1" />
+          <End Type="buyfromallModel.Tag" Role="Tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tag">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Comment_items">
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="0..1" />
+          <End Type="buyfromallModel.User_Comment" Role="User_Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="item">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User_Comment">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="SiteFk1">
+          <End Type="buyfromallModel.site" Role="site" Multiplicity="0..1" />
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="site">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="item">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ImageGallery">
+          <End Type="buyfromallModel.image" Role="image" Multiplicity="*" />
+          <End Type="buyfromallModel.item" Role="item" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -1639,285 +1075,183 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="buyfromallModelStoreContainer" CdmEntityContainer="buyfromallEntities">
-          <EntitySetMapping Name="baskets">
-            <EntityTypeMapping TypeName="buyfromallModel.basket">
-              <MappingFragment StoreEntitySet="baskets">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemChildId" ColumnName="ItemChildId" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="brands">
             <EntityTypeMapping TypeName="buyfromallModel.brand">
               <MappingFragment StoreEntitySet="brands">
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="categories">
             <EntityTypeMapping TypeName="buyfromallModel.category">
               <MappingFragment StoreEntitySet="categories">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="cities">
             <EntityTypeMapping TypeName="buyfromallModel.city">
               <MappingFragment StoreEntitySet="cities">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="colors">
-            <EntityTypeMapping TypeName="buyfromallModel.color">
-              <MappingFragment StoreEntitySet="colors">
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ColorName" ColumnName="ColorName" />
-                <ScalarProperty Name="RgbColor" ColumnName="RgbColor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="customers">
             <EntityTypeMapping TypeName="buyfromallModel.customer">
               <MappingFragment StoreEntitySet="customers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Stars" ColumnName="Stars" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Stars" ColumnName="Stars" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="features">
-            <EntityTypeMapping TypeName="buyfromallModel.feature">
-              <MappingFragment StoreEntitySet="features">
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="buyfromallModel.Feature">
+              <MappingFragment StoreEntitySet="Features">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="FeatureName" ColumnName="FeatureName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="images">
             <EntityTypeMapping TypeName="buyfromallModel.image">
               <MappingFragment StoreEntitySet="images">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
-                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
                 <ScalarProperty Name="ItemChildId" ColumnName="ItemChildId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="item_features">
-            <EntityTypeMapping TypeName="buyfromallModel.item_features">
-              <MappingFragment StoreEntitySet="item_features">
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="ImageSrc" ColumnName="ImageSrc" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
-                <ScalarProperty Name="Value" ColumnName="Value" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="items">
-            <EntityTypeMapping TypeName="buyfromallModel.item">
-              <MappingFragment StoreEntitySet="items">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
-                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
-                <ScalarProperty Name="ManufacturerId" ColumnName="ManufacturerId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="items_child">
-            <EntityTypeMapping TypeName="buyfromallModel.items_child">
-              <MappingFragment StoreEntitySet="items_child">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Stars" ColumnName="Stars" />
-                <ScalarProperty Name="VatId" ColumnName="VatId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="PresentLess" ColumnName="PresentLess" />
-                <ScalarProperty Name="ColorId" ColumnName="ColorId" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
-                <ScalarProperty Name="ParentItemId" ColumnName="ParentItemId" />
-                <ScalarProperty Name="ShippingPrice" ColumnName="ShippingPrice" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ShippingDescription" ColumnName="ShippingDescription" />
-                <ScalarProperty Name="ReturnDescription" ColumnName="ReturnDescription" />
-                <ScalarProperty Name="TimeShipping" ColumnName="TimeShipping" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
-                <ScalarProperty Name="UnitsStock" ColumnName="UnitsStock" />
-                <ScalarProperty Name="SizeId" ColumnName="SizeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="manufacturers">
-            <EntityTypeMapping TypeName="buyfromallModel.manufacturer">
-              <MappingFragment StoreEntitySet="manufacturers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="materials">
-            <EntityTypeMapping TypeName="buyfromallModel.material">
-              <MappingFragment StoreEntitySet="materials">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="LoaziName" ColumnName="LoaziName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="order_items">
             <EntityTypeMapping TypeName="buyfromallModel.order_items">
               <MappingFragment StoreEntitySet="order_items">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemChildId" ColumnName="ItemChildId" />
-                <ScalarProperty Name="Count" ColumnName="Count" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="buyfromallModel.order">
               <MappingFragment StoreEntitySet="orders">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ShippingId" ColumnName="ShippingId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="BuilingName" ColumnName="BuilingName" />
                 <ScalarProperty Name="Paid" ColumnName="Paid" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="payments">
             <EntityTypeMapping TypeName="buyfromallModel.payment">
               <MappingFragment StoreEntitySet="payments">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
-                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+                <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="searches">
             <EntityTypeMapping TypeName="buyfromallModel.search">
               <MappingFragment StoreEntitySet="search">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DateSearch" ColumnName="DateSearch" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="shippings">
-            <EntityTypeMapping TypeName="buyfromallModel.shipping">
-              <MappingFragment StoreEntitySet="shipping">
+                <ScalarProperty Name="DateSearch" ColumnName="DateSearch" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ShippingDate" ColumnName="ShippingDate" />
-                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sites">
             <EntityTypeMapping TypeName="buyfromallModel.site">
               <MappingFragment StoreEntitySet="sites">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Website" ColumnName="Website" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sizes">
-            <EntityTypeMapping TypeName="buyfromallModel.size">
-              <MappingFragment StoreEntitySet="sizes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Size1" ColumnName="Size" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sub_categories">
-            <EntityTypeMapping TypeName="buyfromallModel.sub_categories">
-              <MappingFragment StoreEntitySet="sub_categories">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="users">
-            <EntityTypeMapping TypeName="buyfromallModel.user">
-              <MappingFragment StoreEntitySet="users">
-                <ScalarProperty Name="FaceId" ColumnName="FaceId" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Tell" ColumnName="Tell" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
-                <ScalarProperty Name="Flat" ColumnName="Flat" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="CityId" ColumnName="CityId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="vats">
-            <EntityTypeMapping TypeName="buyfromallModel.vat">
-              <MappingFragment StoreEntitySet="vat">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="wish_list">
-            <EntityTypeMapping TypeName="buyfromallModel.wish_list">
-              <MappingFragment StoreEntitySet="wish_list">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="buyfromallModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tags">
+            <EntityTypeMapping TypeName="buyfromallModel.Tag">
+              <MappingFragment StoreEntitySet="Tags">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ItemChildId" ColumnName="ItemChildId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User_Comment">
             <EntityTypeMapping TypeName="buyfromallModel.User_Comment">
               <MappingFragment StoreEntitySet="User_Comment">
-                <ScalarProperty Name="ItemChildId" ColumnName="ItemChildId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Rate" ColumnName="Rate" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="buyfromallModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Glasses" ColumnName="Glasses" />
+                <ScalarProperty Name="FaceId" ColumnName="FaceId" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Flat" ColumnName="Flat" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Tell" ColumnName="Tell" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1930,28 +1264,36 @@
               <ScalarProperty Name="Id" ColumnName="CustomerId" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="item_categories" TypeName="buyfromallModel.item_categories" StoreEntitySet="item_categories">
-            <EndProperty Name="sub_categories">
-              <ScalarProperty Name="Id" ColumnName="SubCategoryId" />
-            </EndProperty>
+          <EntitySetMapping Name="items">
+            <EntityTypeMapping TypeName="buyfromallModel.item">
+              <MappingFragment StoreEntitySet="items">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Popular" ColumnName="Popular" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CategoryType" ColumnName="CategoryType" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="Availablity" ColumnName="Availablity" />
+                <ScalarProperty Name="BrandId" ColumnName="BrandId" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="ProductCode" ColumnName="ProductCode" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ImageGallery" TypeName="buyfromallModel.ImageGallery" StoreEntitySet="ImageGallery">
             <EndProperty Name="item">
               <ScalarProperty Name="Id" ColumnName="ItemId" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="search_features" TypeName="buyfromallModel.search_features" StoreEntitySet="search_features">
-            <EndProperty Name="search">
-              <ScalarProperty Name="Id" ColumnName="SearchId" />
-            </EndProperty>
-            <EndProperty Name="feature">
-              <ScalarProperty Name="Id" ColumnName="FeatureId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="category_features" TypeName="buyfromallModel.category_features" StoreEntitySet="category_features">
-            <EndProperty Name="feature">
-              <ScalarProperty Name="Id" ColumnName="FeatureId" />
-            </EndProperty>
-            <EndProperty Name="category">
-              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            <EndProperty Name="image">
+              <ScalarProperty Name="Id" ColumnName="ImageId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

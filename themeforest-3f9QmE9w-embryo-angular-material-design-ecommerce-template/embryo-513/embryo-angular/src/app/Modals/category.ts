@@ -1,10 +1,10 @@
-import { SubCategory } from "./subCategory";
-import { Feature } from "./feature";
+import { Item } from "./item";
+
 
 export class Category {
     id: number;
     name: string;
     description: string;
-    sub_categories:SubCategory[]=[];
-    features:Feature[]=[];
+    items:Item[]=[];
+    items1:Item[]=[];
 }

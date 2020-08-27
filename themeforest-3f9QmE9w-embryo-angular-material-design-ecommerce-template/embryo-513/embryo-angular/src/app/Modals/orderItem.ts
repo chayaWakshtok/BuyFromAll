@@ -1,13 +1,14 @@
-import { ItemChild } from "./itemChild";
-import { Order } from "./order";
 
-export class OrderItem{
-    id:number;
-    itemChildId:number;
-    count:number;
-    price:number;
-    status:number;
-    orderId:number;
-    items_child:ItemChild=new ItemChild();
-    order:Order=new Order();
+import { Order } from "./order";
+import { Item } from "./item";
+
+export class OrderItem {
+    id: number;
+    itemId: number;
+    count: number;
+    price: number;
+    status: number;
+    orderId: number;
+    order: Order = new Order();
+    item: Item;
 }

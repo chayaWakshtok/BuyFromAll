@@ -17,8 +17,8 @@ namespace BuyWebSql.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public customer()
         {
-            this.items = new HashSet<item>();
             this.sites = new HashSet<site>();
+            this.items = new HashSet<item>();
         }
     
         public int Id { get; set; }
@@ -35,8 +35,8 @@ namespace BuyWebSql.Models
         public string Password { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<item> items { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<site> sites { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<item> items { get; set; }
     }
 }

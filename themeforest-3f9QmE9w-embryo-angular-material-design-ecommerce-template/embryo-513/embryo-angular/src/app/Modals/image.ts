@@ -1,11 +1,9 @@
-import { ItemChild } from "./itemChild";
+import { Item } from "./item";
 
-export class Image
-{
-    id:number;
-    imageSrc:string;
-    imageUrl:string;
-    itemChildId:number;
-    items_child:ItemChild=new ItemChild();
-
+export class Image {
+    id: number;
+    imageSrc: string;
+    imageUrl: string;
+    items: Item[] = [];
+    items1: Item[] = [];
 }

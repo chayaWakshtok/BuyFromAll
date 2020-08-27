@@ -17,27 +17,47 @@ namespace BuyWebSql.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public item()
         {
-            this.item_features = new HashSet<item_features>();
-            this.items_child = new HashSet<items_child>();
-            this.sub_categories = new HashSet<sub_categories>();
+            this.Features = new HashSet<Feature>();
+            this.order_items = new HashSet<order_items>();
+            this.Tags = new HashSet<Tag>();
+            this.User_Comment = new HashSet<User_Comment>();
+            this.images = new HashSet<image>();
         }
     
         public int Id { get; set; }
-        public string Barcode { get; set; }
+        public string ProductCode { get; set; }
         public Nullable<int> CustomerId { get; set; }
         public Nullable<int> SiteId { get; set; }
         public Nullable<int> BrandId { get; set; }
-        public Nullable<int> ManufacturerId { get; set; }
+        public Nullable<bool> Availablity { get; set; }
+        public Nullable<int> CategoryId { get; set; }
+        public Nullable<int> CategoryType { get; set; }
+        public string Description { get; set; }
+        public Nullable<decimal> DiscountPrice { get; set; }
+        public Nullable<int> ImageId { get; set; }
+        public string Name { get; set; }
+        public Nullable<bool> Popular { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public Nullable<int> Quantity { get; set; }
+        public Nullable<int> Rating { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public string Type { get; set; }
     
         public virtual brand brand { get; set; }
+        public virtual category category { get; set; }
+        public virtual category category1 { get; set; }
         public virtual customer customer { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<item_features> item_features { get; set; }
-        public virtual manufacturer manufacturer { get; set; }
+        public virtual ICollection<Feature> Features { get; set; }
+        public virtual image image { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<items_child> items_child { get; set; }
+        public virtual ICollection<order_items> order_items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Tag> Tags { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<User_Comment> User_Comment { get; set; }
         public virtual site site { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sub_categories> sub_categories { get; set; }
+        public virtual ICollection<image> images { get; set; }
     }
 }

@@ -12,14 +12,12 @@ namespace BuyWebSql.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class item_features
+    public partial class sysdiagram
     {
-        public int Id { get; set; }
-        public Nullable<int> ItemId { get; set; }
-        public Nullable<int> FeatureId { get; set; }
-        public string Value { get; set; }
-    
-        public virtual feature feature { get; set; }
-        public virtual item item { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

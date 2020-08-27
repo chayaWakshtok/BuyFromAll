@@ -1,5 +1,5 @@
-import { ItemChild } from "./itemChild";
 import { User } from "./user";
+import { Item } from "./item";
 
 export class UserComment{
     id:number;
@@ -7,7 +7,7 @@ export class UserComment{
     date:Date;
     rate:number;
     userId:number;
-    itemChildId:number;
-    items_child:ItemChild=new ItemChild();
+    itemId:number;
     user:User=new User();
+    item:Item;
 }

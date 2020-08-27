@@ -5,61 +5,43 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="25111f6141d9435a8520635a0653dd7a" Name="Diagram1">
-        <EntityTypeShape EntityType="buyfromallModel.basket" Width="1.5" PointX="13.5" PointY="13" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.brand" Width="1.5" PointX="3.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.category" Width="1.5" PointX="3.75" PointY="19.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.city" Width="1.5" PointX="9" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.color" Width="1.5" PointX="9" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.customer" Width="1.5" PointX="0.75" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.feature" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.image" Width="1.5" PointX="13.5" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.item_features" Width="1.5" PointX="8.25" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.item" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.items_child" Width="1.5" PointX="11.25" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.manufacturer" Width="1.5" PointX="3.75" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.material" Width="1.5" PointX="4.25" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.order_items" Width="1.5" PointX="16.5" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.order" Width="1.5" PointX="14.25" PointY="19.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.payment" Width="1.5" PointX="16.5" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.search" Width="1.5" PointX="12" PointY="23.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.shipping" Width="1.5" PointX="12" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.site" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.size" Width="1.5" PointX="9" PointY="16.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.sub_categories" Width="1.5" PointX="6" PointY="19" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.user" Width="1.5" PointX="11.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.vat" Width="1.5" PointX="9" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="buyfromallModel.wish_list" Width="1.5" PointX="13.5" PointY="10.125" IsExpanded="true" />
-        <AssociationConnector Association="buyfromallModel.Item11" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.UserFK12" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.BrandFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.CategoryFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.CityFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ColorFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.CustomerIdFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.FeatureFK33" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ChildFK1" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ItemFK22" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ManufacturerFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ParentFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.SiteFk1" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.Child2" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ItemFK11" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.SizeFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.VatFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.OrderFK" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.OrderFK111" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.ShippingFK11" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.userFK1" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.User23" ManuallyRouted="false" />
-        <AssociationConnector Association="buyfromallModel.User22" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="buyfromallModel.User_Comment" Width="1.5" PointX="16.5" PointY="7.75" />
-        <AssociationConnector Association="buyfromallModel.FK_User_Comment_User_Comment" />
+        <EntityTypeShape EntityType="buyfromallModel.brand" Width="1.5" PointX="0.75" PointY="9.75" />
+        <EntityTypeShape EntityType="buyfromallModel.category" Width="1.5" PointX="0.75" PointY="16.875" />
+        <EntityTypeShape EntityType="buyfromallModel.city" Width="1.5" PointX="1.5" PointY="27" />
+        <EntityTypeShape EntityType="buyfromallModel.customer" Width="1.5" PointX="0.75" PointY="12.5" />
+        <EntityTypeShape EntityType="buyfromallModel.Feature" Width="1.5" PointX="5.25" PointY="13.875" />
+        <EntityTypeShape EntityType="buyfromallModel.image" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="buyfromallModel.order_items" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="buyfromallModel.order" Width="1.5" PointX="3" PointY="21" />
+        <EntityTypeShape EntityType="buyfromallModel.payment" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="buyfromallModel.search" Width="1.5" PointX="3" PointY="17.5" />
+        <EntityTypeShape EntityType="buyfromallModel.site" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="buyfromallModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="buyfromallModel.Tag" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="buyfromallModel.User_Comment" Width="1.5" PointX="8.25" PointY="5.625" />
+        <EntityTypeShape EntityType="buyfromallModel.user" Width="1.5" PointX="0.75" PointY="20.125" />
+        <AssociationConnector Association="buyfromallModel.CityFK" />
+        <AssociationConnector Association="buyfromallModel.OrderFK" />
+        <AssociationConnector Association="buyfromallModel.OrderFK111" />
+        <AssociationConnector Association="buyfromallModel.userFK1" />
+        <AssociationConnector Association="buyfromallModel.User23" />
         <AssociationConnector Association="buyfromallModel.FK_User_Comment_users" />
         <AssociationConnector Association="buyfromallModel.customers_sites" />
-        <AssociationConnector Association="buyfromallModel.item_categories" />
-        <AssociationConnector Association="buyfromallModel.search_features" />
-        <AssociationConnector Association="buyfromallModel.category_features" />
-        </Diagram>
+        <EntityTypeShape EntityType="buyfromallModel.item" Width="1.5" PointX="3.375" PointY="6.5" />
+        <AssociationConnector Association="buyfromallModel.BrandFK" />
+        <AssociationConnector Association="buyfromallModel.FK_items_categories" />
+        <AssociationConnector Association="buyfromallModel.FK_items_categories1" />
+        <AssociationConnector Association="buyfromallModel.CustomerIdFK" />
+        <AssociationConnector Association="buyfromallModel.FK_Features_items" />
+        <AssociationConnector Association="buyfromallModel.FK_items_images" />
+        <AssociationConnector Association="buyfromallModel.FK_order_items_items" />
+        <AssociationConnector Association="buyfromallModel.FK_Tags_items" />
+        <AssociationConnector Association="buyfromallModel.FK_User_Comment_items" />
+        <AssociationConnector Association="buyfromallModel.SiteFk1" />
+        <AssociationConnector Association="buyfromallModel.ImageGallery" />
+      </Diagram>
+      <Diagram DiagramId="dc99a813d675400a8b1b7fe56445684c" Name="Diagram2" >
+      </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

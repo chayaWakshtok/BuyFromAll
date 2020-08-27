@@ -12,24 +12,12 @@ namespace BuyWebSql.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class feature
+    public partial class Feature
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public feature()
-        {
-            this.item_features = new HashSet<item_features>();
-            this.searches = new HashSet<search>();
-            this.categories = new HashSet<category>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FeatureName { get; set; }
+        public Nullable<int> ItemId { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<item_features> item_features { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<search> searches { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<category> categories { get; set; }
+        public virtual item item { get; set; }
     }
 }
