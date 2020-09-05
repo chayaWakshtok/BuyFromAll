@@ -25,21 +25,21 @@ namespace BuyWebSql.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<brand> brands { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<city> cities { get; set; }
-        public virtual DbSet<customer> customers { get; set; }
         public virtual DbSet<Feature> Features { get; set; }
-        public virtual DbSet<image> images { get; set; }
-        public virtual DbSet<order_items> order_items { get; set; }
         public virtual DbSet<order> orders { get; set; }
         public virtual DbSet<payment> payments { get; set; }
         public virtual DbSet<search> searches { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<brand> brands { get; set; }
+        public virtual DbSet<collaborationData> collaborationDatas { get; set; }
+        public virtual DbSet<image> images { get; set; }
+        public virtual DbSet<item> items { get; set; }
+        public virtual DbSet<order_items> order_items { get; set; }
         public virtual DbSet<site> sites { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User_Comment> User_Comment { get; set; }
-        public virtual DbSet<user> users { get; set; }
-        public virtual DbSet<item> items { get; set; }
     }
 }

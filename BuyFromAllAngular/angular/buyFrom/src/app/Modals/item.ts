@@ -1,0 +1,43 @@
+import { Brand } from "./brand";
+import { Customer } from "./customer";
+import { Site } from "./site";
+import { Category } from "./category";
+import { Feature } from "./feature";
+import { Image } from "./image";
+import { OrderItem } from "./orderItem";
+import { UserComment } from "./userComment";
+import { Tag } from "./tag";
+
+export class Item {
+    id: number;
+    productCode: string;
+    customerId: number;
+    siteId: number;
+    brandId: number;
+    availablity: boolean;
+    categoryId: number;
+    categoryType: number;
+    description: string;
+    discountPrice: number;
+    imageId: number;
+    name: string;
+    popular: boolean;
+    price: number;
+    quantity: number;
+    rating: number;
+    status: boolean;
+    type: string;
+    brand: Brand;
+    category: Category;
+    category1: Category;
+    customer: Customer;
+    features: Feature[] = [];
+    image: Image;
+    order_items: OrderItem[] = [];
+    tags: Tag[] = [];
+    tagsString:string;
+    user_Comment: UserComment[] = [];
+    site: Site;
+    images: Image[] = [];
+    featuresString:string;
+}

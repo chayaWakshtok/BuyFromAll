@@ -5,29 +5,26 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="25111f6141d9435a8520635a0653dd7a" Name="Diagram1">
-        <EntityTypeShape EntityType="buyfromallModel.brand" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="buyfromallModel.category" Width="1.5" PointX="0.75" PointY="16.875" />
         <EntityTypeShape EntityType="buyfromallModel.city" Width="1.5" PointX="1.5" PointY="27" />
-        <EntityTypeShape EntityType="buyfromallModel.customer" Width="1.5" PointX="0.75" PointY="12.5" />
         <EntityTypeShape EntityType="buyfromallModel.Feature" Width="1.5" PointX="5.25" PointY="13.875" />
-        <EntityTypeShape EntityType="buyfromallModel.image" Width="1.5" PointX="0.75" PointY="5.75" />
-        <EntityTypeShape EntityType="buyfromallModel.order_items" Width="1.5" PointX="5.25" PointY="5.625" />
         <EntityTypeShape EntityType="buyfromallModel.order" Width="1.5" PointX="3" PointY="21" />
         <EntityTypeShape EntityType="buyfromallModel.payment" Width="1.5" PointX="5.25" PointY="21.75" />
         <EntityTypeShape EntityType="buyfromallModel.search" Width="1.5" PointX="3" PointY="17.5" />
-        <EntityTypeShape EntityType="buyfromallModel.site" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="buyfromallModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="buyfromallModel.Tag" Width="1.5" PointX="5.25" PointY="11.25" />
-        <EntityTypeShape EntityType="buyfromallModel.User_Comment" Width="1.5" PointX="8.25" PointY="5.625" />
         <EntityTypeShape EntityType="buyfromallModel.user" Width="1.5" PointX="0.75" PointY="20.125" />
         <AssociationConnector Association="buyfromallModel.CityFK" />
-        <AssociationConnector Association="buyfromallModel.OrderFK" />
         <AssociationConnector Association="buyfromallModel.OrderFK111" />
         <AssociationConnector Association="buyfromallModel.userFK1" />
         <AssociationConnector Association="buyfromallModel.User23" />
-        <AssociationConnector Association="buyfromallModel.FK_User_Comment_users" />
-        <AssociationConnector Association="buyfromallModel.customers_sites" />
-        <EntityTypeShape EntityType="buyfromallModel.item" Width="1.5" PointX="3.375" PointY="6.5" />
+        <EntityTypeShape EntityType="buyfromallModel.brand" Width="1.5" PointX="3" PointY="12.625" />
+        <EntityTypeShape EntityType="buyfromallModel.collaborationData" Width="1.5" PointX="0.75" PointY="11.875" />
+        <EntityTypeShape EntityType="buyfromallModel.image" Width="1.5" PointX="3" PointY="29.75" />
+        <EntityTypeShape EntityType="buyfromallModel.item" Width="1.5" PointX="5.25" PointY="10.125" />
+        <EntityTypeShape EntityType="buyfromallModel.order_items" Width="1.5" PointX="10.5" PointY="16.125" />
+        <EntityTypeShape EntityType="buyfromallModel.site" Width="1.5" PointX="3" PointY="9.625" />
+        <EntityTypeShape EntityType="buyfromallModel.sysdiagram" Width="1.5" PointX="2.625" PointY="0.75" />
+        <EntityTypeShape EntityType="buyfromallModel.User_Comment" Width="1.5" PointX="7.5" PointY="16.625" />
         <AssociationConnector Association="buyfromallModel.BrandFK" />
         <AssociationConnector Association="buyfromallModel.FK_items_categories" />
         <AssociationConnector Association="buyfromallModel.FK_items_categories1" />
@@ -38,6 +35,9 @@
         <AssociationConnector Association="buyfromallModel.FK_Tags_items" />
         <AssociationConnector Association="buyfromallModel.FK_User_Comment_items" />
         <AssociationConnector Association="buyfromallModel.SiteFk1" />
+        <AssociationConnector Association="buyfromallModel.OrderFK" />
+        <AssociationConnector Association="buyfromallModel.FK_User_Comment_users" />
+        <AssociationConnector Association="buyfromallModel.customers_sites" />
         <AssociationConnector Association="buyfromallModel.ImageGallery" />
       </Diagram>
       <Diagram DiagramId="dc99a813d675400a8b1b7fe56445684c" Name="Diagram2" >

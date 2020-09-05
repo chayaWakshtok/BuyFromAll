@@ -21,7 +21,7 @@ namespace BuyWebSql.Models
         public Nullable<int> Status { get; set; }
         public Nullable<int> OrderId { get; set; }
     
-        public virtual order order { get; set; }
         public virtual item item { get; set; }
+        public virtual order order { get; set; }
     }
 }

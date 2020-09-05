@@ -17,8 +17,8 @@ namespace BuyWebSql.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public order()
         {
-            this.order_items = new HashSet<order_items>();
             this.payments = new HashSet<payment>();
+            this.order_items = new HashSet<order_items>();
         }
     
         public int Id { get; set; }
@@ -34,9 +34,9 @@ namespace BuyWebSql.Models
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<order_items> order_items { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<payment> payments { get; set; }
         public virtual user user { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<order_items> order_items { get; set; }
     }
 }

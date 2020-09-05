@@ -46,7 +46,7 @@ namespace BuyWebSql.Models
         public virtual brand brand { get; set; }
         public virtual category category { get; set; }
         public virtual category category1 { get; set; }
-        public virtual customer customer { get; set; }
+        public virtual collaborationData collaborationData { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Feature> Features { get; set; }
         public virtual image image { get; set; }

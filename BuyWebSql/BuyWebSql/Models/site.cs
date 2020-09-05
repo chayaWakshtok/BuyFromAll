@@ -17,8 +17,8 @@ namespace BuyWebSql.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public site()
         {
-            this.customers = new HashSet<customer>();
             this.items = new HashSet<item>();
+            this.collaborationDatas = new HashSet<collaborationData>();
         }
     
         public int Id { get; set; }
@@ -27,8 +27,8 @@ namespace BuyWebSql.Models
         public string Website { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<customer> customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<item> items { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<collaborationData> collaborationDatas { get; set; }
     }
 }

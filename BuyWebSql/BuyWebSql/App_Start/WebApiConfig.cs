@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Serialization;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,16 @@ namespace BuyWebSql
 
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings
        .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
+                = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
+            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling
+                 = Newtonsoft.Json.PreserveReferencesHandling.Objects;
             GlobalConfiguration.Configuration.Formatters
                 .Remove(GlobalConfiguration.Configuration.Formatters.XmlFormatter);
             ((DefaultContractResolver)config.Formatters.JsonFormatter.SerializerSettings.ContractResolver).IgnoreSerializableAttribute = true;
             config.Formatters.JsonFormatter.SerializerSettings.
              ContractResolver = new CamelCasePropertyNamesContractResolver();
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

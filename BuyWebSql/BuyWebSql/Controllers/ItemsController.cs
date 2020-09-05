@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Algolia.Search.Clients;
 using BuyWebSql.Models;
+using Newtonsoft.Json;
 
 namespace BuyWebSql.Controllers
 {
@@ -81,6 +84,11 @@ namespace BuyWebSql.Controllers
 
             db.items.Add(item);
             db.SaveChanges();
+
+            SearchClient client = new SearchClient("7J56ZYTP02", "b2c0772d562cc1ce06d53a2f2a76f562");
+            SearchIndex index = client.InitIndex("Items");
+
+            index.SaveObject(item,autoGenerateObjectId: true);
 
             return CreatedAtRoute("DefaultApi", new { id = item.Id }, item);
         }

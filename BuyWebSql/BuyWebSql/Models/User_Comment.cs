@@ -21,7 +21,7 @@ namespace BuyWebSql.Models
         public Nullable<int> UserId { get; set; }
         public Nullable<int> ItemId { get; set; }
     
-        public virtual user user { get; set; }
         public virtual item item { get; set; }
+        public virtual user user { get; set; }
     }
 }
