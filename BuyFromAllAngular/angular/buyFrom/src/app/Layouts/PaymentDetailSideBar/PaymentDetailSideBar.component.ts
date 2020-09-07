@@ -2,6 +2,7 @@ import { Component, OnInit,ViewChild } from '@angular/core';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 
 import { EmbryoService } from '../../Services/Embryo.service';
+import { Item } from 'src/app/Modals/item';
 
 @Component({
   selector: 'embryo-PaymentDetailSideBar',
@@ -10,7 +11,7 @@ import { EmbryoService } from '../../Services/Embryo.service';
 })
 export class PaymentDetailSideBarComponent implements OnInit {
 
-   cartProducts  : any;
+   cartProducts  : Item[]=[];
    popupResponse : any;
 
    constructor(public embryoService: EmbryoService,

@@ -37,7 +37,7 @@ export class EmbryoService {
    localStorageWishlist : any;
    navbarCartCount : number = 0;
    navbarWishlistProdCount = 0;
-   buyUserCartProducts : any;
+   buyUserCartProducts : Item[]=[];
    
    constructor(private http:HttpClient, 
                private dialog: MatDialog, 
@@ -51,7 +51,7 @@ export class EmbryoService {
       //localStorage.removeItem("user");
       localStorage.removeItem("byProductDetails");
 
-      this.db.object("products").valueChanges().subscribe(res => {this.setCartItemDefaultValue(res['gadgets'][1])});
+      //this.db.object("products").valueChanges().subscribe(res => {this.setCartItemDefaultValue(res['gadgets'][1])});
    }
 
    public setCartItemDefaultValue(setCartItemDefaultValue) {
@@ -427,7 +427,7 @@ export class EmbryoService {
     * Buy Product functions 
     */
    public addBuyUserDetails(formdata) {
-      localStorage.setItem("user", JSON.stringify(formdata));
+      localStorage.setItem("userDetails", JSON.stringify(formdata));
       
       let product = JSON.parse(localStorage.getItem("cart_item"))
       localStorage.setItem("byProductDetails", JSON.stringify(product));

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmbryoService } from '../../../Services/Embryo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-Signin',
@@ -9,9 +10,13 @@ import { EmbryoService } from '../../../Services/Embryo.service';
 export class SigninComponent implements OnInit {
 
 
-   constructor(public embryoService : EmbryoService) { }
+   constructor(public embryoService : EmbryoService,
+      public router:Router) { }
 
    ngOnInit() {
+      if (localStorage.getItem("user")) {
+         this.router.navigate(['/checkout/payment']);
+      }
    }
 
    public toggleRightSidenav() {

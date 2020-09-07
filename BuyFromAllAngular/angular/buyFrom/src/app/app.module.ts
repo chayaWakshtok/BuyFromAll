@@ -72,7 +72,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { AdminPanelModule } from './AdminPanel/admin-panel.module';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -153,7 +153,8 @@ export function createTranslateLoader(http: HttpClient) {
       SlickCarouselModule,
       PerfectScrollbarModule,
       DeviceDetectorModule.forRoot(),
-      AdminPanelModule
+      AdminPanelModule,
+      NgxPayPalModule
   ],
    providers: [
       MenuItems,

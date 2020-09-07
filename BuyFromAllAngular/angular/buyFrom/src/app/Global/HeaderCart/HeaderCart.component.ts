@@ -1,4 +1,5 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Item } from 'src/app/Modals/item';
 
 @Component({
    selector: 'embryo-HeaderCart',
@@ -8,7 +9,7 @@ import { Component, OnInit, OnChanges, Input, Output, EventEmitter, ChangeDetect
 })
 export class HeaderCartComponent implements OnInit, OnChanges {
 
-   @Input() cartProducts : any;
+   @Input() cartProducts : Item[]=[];
    @Input() count        : any;
    @Input() currency     : string;
 

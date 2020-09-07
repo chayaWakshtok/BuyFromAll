@@ -1,90 +1,96 @@
-import { Component, OnInit, AfterViewChecked} from '@angular/core';
+import { Component, OnInit, AfterViewChecked } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { ChangeDetectorRef } from '@angular/core';
 
 import { EmbryoService } from '../../Services/Embryo.service';
 import { Item } from 'src/app/Modals/item';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
-  selector: 'embryo-Cart',
-  templateUrl: './Cart.component.html',
-  styleUrls: ['./Cart.component.scss']
+   selector: 'embryo-Cart',
+   templateUrl: './Cart.component.html',
+   styleUrls: ['./Cart.component.scss']
 })
 export class CartComponent implements OnInit, AfterViewChecked {
 
-   products       : Item[]=[];
-   quantityArray  : number[] = [1,2,3,4,5,6,7,8,9,10];
-   popupResponse  : any;
+   products: Item[] = [];
+   quantityArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+   popupResponse: any;
 
-   constructor(public embryoService : EmbryoService, 
-               private router: Router,
-               private loadingBar: LoadingBarService,
-               private cdRef : ChangeDetectorRef) {
+   constructor(public embryoService: EmbryoService,
+      private router: Router,
+      private loadingBar: LoadingBarService,
+      private cdRef: ChangeDetectorRef,
+      public userService: UserService) {
    }
 
    ngOnInit() {
    }
 
-   ngAfterViewChecked() : void {
+   ngAfterViewChecked(): void {
       this.cdRef.detectChanges();
    }
 
-   public removeProduct(value:any) {
+   public removeProduct(value: any) {
       let message = "Are you sure you want to delete this product?";
       this.embryoService.confirmationPopup(message).
-         subscribe(res => {this.popupResponse = res},
-                   err => console.log(err),
-                   ()  => this.getPopupResponse(this.popupResponse, value)
-                  );
+         subscribe(res => { this.popupResponse = res },
+            err => console.log(err),
+            () => this.getPopupResponse(this.popupResponse, value)
+         );
    }
 
    public getPopupResponse(response, value) {
-      if(response){
+      if (response) {
          this.embryoService.removeLocalCartProduct(value);
       }
    }
 
-   public calculateProductSinglePrice(product:any, value: any) {
+   public calculateProductSinglePrice(product: any, value: any) {
       let price = 0;
       product.quantity = value;
-      price = product.price*value;
+      price = product.price * value;
       return price;
    }
 
    public calculateTotalPrice() {
       let subtotal = 0;
-      if(this.embryoService.localStorageCartProducts && this.embryoService.localStorageCartProducts.length>0) {
-         for(let product of this.embryoService.localStorageCartProducts) {
-            subtotal += (product.price *product.quantity);
+      if (this.embryoService.localStorageCartProducts && this.embryoService.localStorageCartProducts.length > 0) {
+         for (let product of this.embryoService.localStorageCartProducts) {
+            subtotal += (product.price * product.quantity);
          }
          return subtotal;
       }
       return subtotal;
-      
+
    }
 
    public getTotalPrice() {
       let total = 0;
-      if(this.embryoService.localStorageCartProducts && this.embryoService.localStorageCartProducts.length>0) {
-         for(let product of this.embryoService.localStorageCartProducts) {
-            total += (product.price*product.quantity);
+      if (this.embryoService.localStorageCartProducts && this.embryoService.localStorageCartProducts.length > 0) {
+         for (let product of this.embryoService.localStorageCartProducts) {
+            total += (product.price * product.quantity);
          }
-         total += (this.embryoService.shipping+this.embryoService.tax);
+         total += (this.embryoService.shipping + this.embryoService.tax);
          return total;
       }
 
       return total;
-      
+
    }
 
    public updateLocalCartProduct() {
       this.embryoService.updateAllLocalCartProduct(this.embryoService.localStorageCartProducts);
-      this.router.navigate(['/checkout'])
+      debugger
+      if (localStorage.getItem("user")) {
+         this.router.navigate(['/checkout/payment']);
+      }
+      else this.router.navigate(['/checkout']);
    }
 
    public getQuantityValue(product) {
-      if(product.quantity) {
+      if (product.quantity) {
          return product.quantity
       } else {
          return 1;

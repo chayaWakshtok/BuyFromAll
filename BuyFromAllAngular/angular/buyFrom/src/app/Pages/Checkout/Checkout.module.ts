@@ -36,6 +36,7 @@ import { SigninComponent } from './Signin/Signin.component';
 import { FinalReceiptComponent } from './FinalReceipt/FinalReceipt.component';
 
 import { GlobalModule } from '../../Global/Global.module';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { GlobalModule } from '../../Global/Global.module';
       GlobalModule,
       FormsModule,
       ReactiveFormsModule,
-      CardModule
+      CardModule,
+      NgxPayPalModule
    ],
    declarations: [
       PaymentComponent,
